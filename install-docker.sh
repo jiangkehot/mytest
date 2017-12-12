@@ -20,3 +20,6 @@ wget raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
 
 #创建docker-SSH镜像
 docker build -t centos:ssh -f dockerfile-ssh .
+
+#创建git服务器
+docker --name git -h git -p 2222:22 -itd centos:ssh
