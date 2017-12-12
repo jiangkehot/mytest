@@ -14,3 +14,9 @@ docker pull centos
 
 #启动第一个容器
 #docker run -it centos
+
+#下载Dockerfile文件
+wget raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
+
+#创建docker-SSH镜像
+docker build -t centos:ssh -f dockerfile-ssh .
