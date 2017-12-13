@@ -1,0 +1,39 @@
+# My Git-server dockerfile
+
+FROM  centos:ssh
+
+#安装git服务
+RUN yum install -y git
+
+#创建git账户,-s:指定为git-shell，使其不可以通过shell登录，git-shell的作用是用户登录后立即退出
+RUN useradd -s `which git-shell` git
+
+#配置SSH
+#创建.ssh目录
+RUN mkdir -m 700 -p /home/git/.ssh
+#获取公钥，通过设置变量id_rsa.pub，由用户输入得到
+RUN echo "Please input your id_rsa.pub"
+RUN read id_rsa.pub
+RUN echo $id_rsa.pub >> touch /home/git/.ssh/authorized_keys
+#修改authorized_keys的属性
+RUN chown git:git /home/git/.ssh/authorized_keys
+RUN chmod 600 /home/git/.ssh/authorized_keys
+#SSH配置文件sshd_config
+RUN sed -i 's/#RSAAuthentication/RSAAuthentication/g' /etc/ssh/sshd_config
+RUN sed -i 's/#PubkeyAuthentication/PubkeyAuthentication/g' /etc/ssh/sshd_config
+RUN sed -i 's/.ssh/authorized_keys/\/home\/git\/.ssh/authorized_keys/g' /etc/ssh/sshd_config
+
+
+
+
+#安装工具
+RUN yum install -y which net-tools
+
+#启动SSH的守护进程,注意需要使用绝对路径
+CMD /usr/sbin/sshd -D
+
+#验证是否启动
+#netstat -antp |grep sshd
+
+#修改git账户的shell，使其不可以通过shell登录，git-shell的左右是用户登录后立即退出
+usermod -s `which git-shell` git
