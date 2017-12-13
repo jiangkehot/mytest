@@ -11,7 +11,7 @@ RUN useradd -s `which git-shell` git
 #配置SSH
 #创建.ssh目录
 RUN mkdir -m 700 -p /home/git/.ssh
-RUN chmod git:git /home/git/.ssh
+RUN chown git:git /home/git/.ssh
 #获取公钥，通过设置变量id_rsa.pub，由用户输入得到
 RUN echo "Please input your id_rsa.pub"
 RUN read id_rsa.pub
