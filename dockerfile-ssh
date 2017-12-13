@@ -2,9 +2,6 @@
 
 FROM  centos:latest
 
-#设置系统时间为CTS时间
-ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-
 #创建SSH密码
 RUN /bin/echo 'root:ssh123456' |chpasswd
 
