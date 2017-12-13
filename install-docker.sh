@@ -23,8 +23,8 @@ docker build -t centos:ssh -f dockerfile-ssh /root/ssh
 
 #创建git服务器
 mkdir /root/git
-wget -P /root/git raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
-docker build -t centos:ssh -f dockerfile-ssh /root/git
+wget -P /root/git raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-git
+docker build -t centos:git -f dockerfile-git /root/git
 
 #启动git-server容器
 docker run --name git -h git -p 2222:22 -itd centos:git
