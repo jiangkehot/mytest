@@ -16,15 +16,15 @@ systemctl start docker
 docker pull centos
 
 #创建docker-SSH镜像
-#下载Dockerfile文件
-mkdir /root/ssh
+dfpath=/root/ssh
+mkdir $dfpath
 wget -P /root/ssh raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
-docker build -t centos:ssh -f dockerfile-ssh /root/ssh
+docker build -t centos:ssh -f $dfpath/dockerfile-ssh $dfpath
 
 #创建git服务器
-mkdir /root/git
-wget -P /root/git raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-git
-docker build -t centos:git -f dockerfile-git /root/git
+dfpath=/root/git
+mkdir $dfpath
+docker build -t centos:git -f 'raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-git' $dfpath
 
 #启动git-server容器
 docker run --name git -h git -p 2222:22 -itd centos:git
