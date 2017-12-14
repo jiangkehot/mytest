@@ -9,9 +9,8 @@ RUN useradd git
 #创建.ssh目录
 RUN mkdir -m 700 -p /home/git/.ssh
 RUN chown git:git /home/git/.ssh
-#配置公钥，通过设置变量id_rsa.pub，由用户输入得到
-RUN echo "Please input your id_rsa.pub"
-RUN read id_rsa_pub
+#配置公钥
+RUN id_rsa_pub="ssh-rsa\ AAAAB3NzaC1yc2EAAAADAQABAAABAQDrH8ik1o0KwnzRN/nxjpABq5wnVi3WsM0IbZFp4QK5Ssr8z3PlVMRyrrcLemk1LEeWNiYEEzsvTQkGOhf69PHFSzzGWnWBdM2w1iE8ZWPaYdZg2Hk0BwbZqcRCdOQv7dkOgg/aL5C9e8VnaqpmW7aNE0Urcf1mTubzQU+zACvJ9X1NBwzSabgrY5F+gx0q6/hbbNxMraA1C3VDWqxk9WzcRUGlgU7AYp2yvMg5da7oUUbiJBfCumo6aCVuuTSAtWhszlESDqLg6CpEATXgepFU7OK/XZtt+T1RyqYRUOyFF1NVywWGJWILGtlTRov4lW7n+bumPRCV751a1fzlxa6X\ \“jiangkehot@gmail.com\”"
 RUN echo $id_rsa_pub >> /home/git/.ssh/authorized_keys
 #修改authorized_keys的属性
 RUN chown git:git /home/git/.ssh/authorized_keys
