@@ -1,13 +1,16 @@
 #! /bin/bash
 
 # This is my first shell script!
-#Writen down by Aming 2017-12-12
+# Writen down by Aming 2017-12-12
 
 #设置系统时间为CTS时间
-#ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-# 更新yum源并安装docker
-yum update -y && curl -fsSL https://get.docker.com/ | sh
+#更新yum源
+yum update -y
+
+#安装docker
+curl -fsSL https://get.docker.com/ | sh
 
 #启动docker服务
 systemctl start docker
