@@ -25,4 +25,4 @@ RUN sed -i 's/.ssh/authorized_keys/\/home\/git\/.ssh/authorized_keys/g' /etc/ssh
 RUN yum install -y git
 
 #启动SSH的守护进程,注意需要使用绝对路径
-CMD `which git` -D
+CMD /usr/sbin/sshd -D
