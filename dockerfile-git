@@ -18,7 +18,7 @@ RUN chmod 600 /home/git/.ssh/authorized_keys
 #修改SSH配置文件sshd_config
 RUN sed -i 's/#RSAAuthentication/RSAAuthentication/g' /etc/ssh/sshd_config
 RUN sed -i 's/#PubkeyAuthentication/PubkeyAuthentication/g' /etc/ssh/sshd_config
-RUN sed -i 's/.ssh\/authorized_keys/\/home\/git\/.ssh/authorized_keys/g' /etc/ssh/sshd_config
+RUN sed -i 's/.ssh\/authorized_keys/\/home\/git\/.ssh\/authorized_keys/g' /etc/ssh/sshd_config
 
 #安装git服务
 RUN yum install -y git
