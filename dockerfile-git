@@ -5,7 +5,7 @@ FROM  centos:ssh
 #创建git账户
 RUN useradd git
 
-#配置git账户，使其通过秘钥来认证
+#配置git账户SSH，使其通过秘钥来认证
 #创建.ssh目录
 RUN mkdir -m 700 -p /home/git/.ssh
 RUN chown git:git /home/git/.ssh
@@ -19,11 +19,14 @@ RUN sed -i 's/#RSAAuthentication/RSAAuthentication/g' /etc/ssh/sshd_config
 RUN sed -i 's/#PubkeyAuthentication/PubkeyAuthentication/g' /etc/ssh/sshd_config
 RUN sed -i 's/.ssh\/authorized_keys/\/home\/git\/.ssh\/authorized_keys/g' /etc/ssh/sshd_config
 
+#配置git服务
 #安装git服务
 RUN yum install -y git
-
 #启动git服务
 #CMD systemctl start git
+#初始化git库
+git init --bare /srv/git/zgctest.git
+chown -R git:git /srv/git
 
 #禁止git账户登录shell,-s:指定为git-shell，使其不可以通过shell登录，git-shell的作用是用户登录后立即退出
 RUN usermod -s `which git-shell` git
