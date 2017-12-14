@@ -5,4 +5,19 @@ config.vm.define :test do |test|
     test.vm.box = "centos/7"
     test.vm.hostname = "test"
     test.vm.network :private_network, ip: "11.11.1.1"
+    test.vm.provision "shell", path: "vagrantup.sh"
 end
+
+
+
+
+
+vagrantup.sh
+#设置系统时间为CTS时间
+ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+#更新yum源
+yum update -y
+
+#安装工具
+RUN yum install -y wget
