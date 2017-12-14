@@ -2,9 +2,6 @@
 
 FROM  centos:ssh
 
-#创建git账户,-s:指定为git-shell，使其不可以通过shell登录，git-shell的作用是用户登录后立即退出
-RUN useradd -s `which git-shell` git
-
 #配置git账户的SSH公钥
 #创建.ssh目录
 RUN mkdir -m 700 -p /home/git/.ssh
@@ -23,6 +20,9 @@ RUN sed -i 's/.ssh/authorized_keys/\/home\/git\/.ssh/authorized_keys/g' /etc/ssh
 
 #安装git服务
 RUN yum install -y git
+
+#创建git账户,-s:指定为git-shell，使其不可以通过shell登录，git-shell的作用是用户登录后立即退出
+RUN useradd -s `which git-shell` git
 
 #启动SSH的守护进程,注意需要使用绝对路径
 CMD /usr/sbin/sshd -D
