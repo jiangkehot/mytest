@@ -1,0 +1,8 @@
+config.vm.define :test do |test|
+    test.vm.provider "virtualbox" do |v|
+          v.customize ["modifyvm", :id, "--name", "test", "--memory", "512"]
+    end
+    test.vm.box = "centos/7"
+    test.vm.hostname = "test"
+    test.vm.network :private_network, ip: "11.11.1.1"
+end
