@@ -27,7 +27,7 @@ mkdir $dfpath
 wget -P $dfpath raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
 docker build -t centos:ssh -f $dfpath/dockerfile-ssh $dfpath
 
-#创建git服务器
+#创建git镜像
 dfpath=/root/git
 mkdir $dfpath
 wget -P $dfpath 'https://raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-git'
