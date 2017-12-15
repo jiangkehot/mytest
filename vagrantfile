@@ -17,7 +17,7 @@ vagrantup.sh
 ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 #更新yum源
-yum update -y
+#yum update -y
 
 #安装工具
-RUN yum install -y wget
+yum install -y wget
