@@ -11,6 +11,7 @@ FROM  centos:ssh
 #RUN yum install -y which net-tools
 
 #创建git账户
+#也可以取消此步骤，然后将yum instal git提前，因为安装git服务后，将自动创建git账户
 RUN useradd git
 
 #配置git账户SSH，使其通过秘钥来认证
