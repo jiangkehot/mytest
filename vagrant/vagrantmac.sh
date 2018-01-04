@@ -9,7 +9,8 @@ set -e
 #source ~/.zshrc
 
 #创建并进入目录virtualboxbase
-mkdir virtualboxbase && cd virtualboxbase
+vmdirname=virtualboxbase
+mkdir virtualboxbase && cd $vmdirname
 
 #vagrant初始化目录
 vagrant init centos/7
@@ -18,10 +19,11 @@ vagrant init centos/7
 #sed -n '/centos\/7/=' vagrantfile |sed -n "1"p
 
 #修改初始化后的Vagrantfile文件
+vmhostname=virtualboxbase
 #添加可以执行外部sh脚本的语句
 sed -i "16a\  config.vm.provision \"shell\", path: \"virtualbox_centos_docker.sh\"" Vagrantfile
 #命名host
-sed -i "16a\  config.vm.hostname = \"virtualbox_base\"" Vagrantfile
+sed -i "16a\  config.vm.hostname = \"$vmhostname\"" Vagrantfile
 
 
 #下载sh脚本
@@ -34,7 +36,7 @@ vagrant up
 vagrant package --output CentOS7_docker
 
 #移除虚拟机
-vagrant destroy virtualbox_base
+vagrant destroy $vmhostname
 
 #移除环境
-cd .. && rm -rf virtualboxbase
+cd .. && rm -rf $vmdirname
