@@ -39,7 +39,7 @@ vagrant up
 vagrant package --output CentOS7_docker
 
 #添加box
-vagrant box add CentOS7_docker
+vagrant box add CentOS7_docker ./CentOS7_docker
 
 #移除虚拟机
 vagrant destroy $vmhostname
