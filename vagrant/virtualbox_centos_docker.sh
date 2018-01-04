@@ -18,4 +18,3 @@ curl -fsSL https://get.docker.com/ | sh
 systemctl start docker
 #pull centos的latest镜像
 docker pull centos
-
