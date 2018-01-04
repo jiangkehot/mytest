@@ -18,3 +18,9 @@ curl -fsSL https://get.docker.com/ | sh
 systemctl start docker
 #pull centos的latest镜像
 docker pull centos
+
+#更新docker并创建SSH镜像
+dfpath=/root/ssh
+mkdir $dfpath
+wget -P $dfpath raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
+docker build -t centos:ssh -f $dfpath/dockerfile-ssh $dfpath
