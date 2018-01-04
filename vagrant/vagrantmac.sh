@@ -41,7 +41,7 @@ vagrant package --output CentOS7_docker
 vagrant box add CentOS7_docker ./CentOS7_docker
 
 #移除虚拟机，仅保留镜像
-vagrant destroy $vmhostname
+vagrant destroy -y
 
 #移除环境
 cd .. && rm -rf $vmdirname
