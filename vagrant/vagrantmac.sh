@@ -24,7 +24,10 @@ vmhostname=virtualboxbase
 sed -i "16a\  config.vm.provision \"shell\", path: \"virtualbox_centos_docker.sh\"" Vagrantfile
 #命名host
 sed -i "16a\  config.vm.hostname = \"$vmhostname\"" Vagrantfile
-
+#命名vmname
+sed -i "16a\  end" Vagrantfile
+sed -i "16a\      v.customize \[\"modifyvm\", :id, \"--name\", \"$vmhostname\", \"--memory\", \"512\"\]" Vagrantfile
+sed -i "16a\  config.vm.provider \"virtualbox\" do \|v\|" Vagrantfile
 
 #下载sh脚本
 wget -P ./ raw.githubusercontent.com/jiangkehot/jiang_test/920bb35de0a82311c908cafd0787239c1ce9d5d2/vagrant/virtualbox_centos_docker.sh
@@ -34,6 +37,9 @@ vagrant up
 
 #vagrant package 打包生成virtualbox
 vagrant package --output CentOS7_docker
+
+#添加box
+vagrant box add CentOS7_docker
 
 #移除虚拟机
 vagrant destroy $vmhostname
