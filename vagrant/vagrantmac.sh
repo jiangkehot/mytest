@@ -11,7 +11,7 @@ set -e
 #创建目录并初始化
 #创建并进入目录virtualboxbase
 vmdirname=virtualboxbase
-mkdir virtualboxbase && cd $vmdirname
+mkdir $vmdirname && cd $vmdirname
 #vagrant初始化目录
 vagrant init centos/7
 
