@@ -16,7 +16,7 @@ brew cask install virtualbox vagrant
 vmdirname=virtualboxbase
 mkdir $vmdirname && cd $vmdirname
 #vagrant初始化目录
-vagrant init centos/7
+vagrant init centos
 
 #配置Vagrantfile
 #获取行号
