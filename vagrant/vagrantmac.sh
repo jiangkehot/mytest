@@ -9,7 +9,7 @@ set -e
 #source ~/.zshrc
 
 #安装vagrant 和 virtualbox
-brew cask install virtualbox vagrant
+#brew cask install virtualbox vagrant
 
 #创建目录并初始化
 #创建并进入目录virtualboxbase
