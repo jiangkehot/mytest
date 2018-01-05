@@ -34,6 +34,13 @@ wget -P ./ raw.githubusercontent.com/jiangkehot/jiang_test/920bb35de0a82311c908c
 #启动虚拟机（根据shell脚本更新centos，并下载docker和更新docker镜像）
 vagrant up
 
+#更新docker
+vagrant ssh
+echo 'vagrant'|su -
+systemctl start docker
+docker build -t centos:ssh https://raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
+exit && exit
+
 #一切更新完毕之后，使用vagrant package打包生成virtualbox
 vagrant package --output CentOS7_docker
 
