@@ -29,17 +29,17 @@ sed -i "16a\      v.customize \[\"modifyvm\", :id, \"--name\", \"$vmhostname\", 
 sed -i "16a\  config.vm.provider \"virtualbox\" do \|v\|" Vagrantfile
 
 #下载sh脚本
-wget -P ./ raw.githubusercontent.com/jiangkehot/jiang_test/920bb35de0a82311c908cafd0787239c1ce9d5d2/vagrant/virtualbox_centos_docker.sh
+wget -P ./ https://raw.githubusercontent.com/jiangkehot/jiang_test/master/vagrant/virtualbox_centos_docker.sh
 
 #启动虚拟机（根据shell脚本更新centos，并下载docker和更新docker镜像）
 vagrant up
 
 #更新docker
-vagrant ssh
-echo 'vagrant'|su -
-systemctl start docker
-docker build -t centos:ssh https://raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
-exit && exit
+#vagrant ssh
+#echo 'vagrant'|su -
+#systemctl start docker
+#docker build -t centos:ssh https://raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
+#exit && exit
 
 #一切更新完毕之后，使用vagrant package打包生成virtualbox
 vagrant package --output CentOS7_docker
