@@ -23,3 +23,4 @@ docker pull centos
 mkdir /root/ssh
 wget -P /root/ssh raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
 docker build -t centos:ssh -f /root/ssh/dockerfile-ssh /root/ssh
+#docker build -t centos:ssh https://raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
