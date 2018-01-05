@@ -16,11 +16,11 @@ brew cask install virtualbox vagrant
 vmdirname=virtualboxbase
 mkdir $vmdirname && cd $vmdirname
 #vagrant初始化目录
-vagrant init centos
+vagrant init centos7
 
 #配置Vagrantfile
 #获取行号
-#sed -n '/centos\/7/=' vagrantfile |sed -n "1"p
+#sed -n '/centos7/=' vagrantfile |sed -n "1"p
 #添加可以执行外部sh脚本的语句
 sed -i "16a\  config.vm.provision \"shell\", path: \"virtualbox_centos_docker.sh\"" Vagrantfile
 #命名host
