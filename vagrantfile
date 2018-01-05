@@ -4,8 +4,10 @@ config.vm.define :test do |test|
     end
     test.vm.box = "centos/7"
     test.vm.hostname = "test"
-    test.vm.network :private_network, ip: "11.11.1.1"
+    test.vm.network :private_network, ip: "11.11.1.11"
     test.vm.provision "shell", path: "vagrantup.sh"
+    test.vm.network "forwarded_port", guest: 80, host: 8080
+    test.vm.synced_folder "../data", "/vagrant_data"
 end
 
 
