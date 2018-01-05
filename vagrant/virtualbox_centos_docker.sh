@@ -20,7 +20,9 @@ systemctl start docker
 docker pull centos
 
 #更新docker并创建SSH镜像
-mkdir /root/ssh
-wget -P /root/ssh raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
-docker build -t centos:ssh -f /root/ssh/dockerfile-ssh /root/ssh
-#docker build -t centos:ssh https://raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
+#方法一
+#mkdir /root/ssh
+#wget -P /root/ssh raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
+#docker build -t centos:ssh -f /root/ssh/dockerfile-ssh /root/ssh
+#方法二
+docker build -t centos:ssh https://raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
