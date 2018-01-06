@@ -12,7 +12,7 @@ set -e
 #brew cask install virtualbox vagrant
 
 #add box centos/7
-vagrant box add centos\/7
+#vagrant box add centos\/7
 
 #创建目录并初始化
 #创建并进入目录virtualboxbase
