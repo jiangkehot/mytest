@@ -19,17 +19,39 @@ mkdir $vmdirname && cd $vmdirname
 vagrant init centos7
 
 #配置Vagrantfile
+#GNU-sed
 #获取行号
 #sed -n '/centos7/=' vagrantfile |sed -n "1"p
 #添加可以执行外部sh脚本的语句
-sed -i "16a\  config.vm.provision \"shell\", path: \"virtualbox_centos_docker.sh\"" Vagrantfile
+#GUNsed -i "16a\  config.vm.provision \"shell\", path: \"virtualbox_centos_docker.sh\"" Vagrantfile
+#命名host
+#GUNvmhostname=virtualboxbase
+#GUNsed -i "16a\  config.vm.hostname = \"$vmhostname\"" Vagrantfile
+#命名vmname
+#GUNsed -i "16a\  end" Vagrantfile
+#GUNsed -i "16a\      v.customize \[\"modifyvm\", :id, \"--name\", \"$vmhostname\", \"--memory\", \"512\"\]" Vagrantfile
+#GUNsed -i "16a\  config.vm.provider \"virtualbox\" do \|v\|" Vagrantfile
+
+#Mac sed
+sed -i '' '16a\
+\  config.vm.provision \"shell\", path: \"virtualbox_centos_docker.sh\"
+' Vagrantfile
 #命名host
 vmhostname=virtualboxbase
-sed -i "16a\  config.vm.hostname = \"$vmhostname\"" Vagrantfile
+sed -i '' '16a\
+\  config.vm.hostname = \"$vmhostname\"
+' Vagrantfile
 #命名vmname
-sed -i "16a\  end" Vagrantfile
-sed -i "16a\      v.customize \[\"modifyvm\", :id, \"--name\", \"$vmhostname\", \"--memory\", \"512\"\]" Vagrantfile
-sed -i "16a\  config.vm.provider \"virtualbox\" do \|v\|" Vagrantfile
+sed -i '' '16a\
+\  end
+' Vagrantfile
+sed -i '' '16a\
+\    v.customize \[\"modifyvm\", :id, \"--name\", \"$vmhostname\", \"--memory\", \"512\"\]
+' Vagrantfile
+sed -i '' '16a\
+\  config.vm.provider \"virtualbox\" do \|v\|
+' Vagrantfile
+
 
 #下载sh脚本
 wget -P ./ https://raw.githubusercontent.com/jiangkehot/jiang_test/master/vagrant/virtualbox_centos_docker.sh
