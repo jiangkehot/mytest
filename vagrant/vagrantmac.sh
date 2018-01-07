@@ -11,6 +11,9 @@ set -e
 #安装vagrant 和 virtualbox
 #brew cask install virtualbox vagrant
 
+#安装插件vbgues解决共享目录问题（即新创建的vm中若没有Guest Additions，则无法与宿主主机共享目录），此插件可自动匹配版本并安装Guest Additions
+vagrant plugin install vagrant-vbgues
+
 #add box centos/7
 #vagrant box add centos\/7
 
