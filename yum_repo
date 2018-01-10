@@ -5,7 +5,7 @@
 mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 
 #下载阿里云yum源
-echo "请输入CentOS版本,如6、7等"
+echo "请输入CentOS版本,如6 或 7"
 read xversion
 curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-$xversion.repo
 #或者
@@ -13,3 +13,11 @@ curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-
 
 #生成缓存
 yum makecache
+
+
+echo "请输入x"
+read x
+echo “请输入y”
+read y
+sum=$[$x+$y]
+echo "结果是$sum"
