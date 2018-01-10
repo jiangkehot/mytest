@@ -1,0 +1,15 @@
+#! /bin/bash
+#修改yum源
+
+#备份系统yum源
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+
+#下载阿里云yum源
+echo "请输入CentOS版本,如6、7等"
+read xversion
+curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-$xversion.repo
+#或者
+#wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-$xversion.repo
+
+#生成缓存
+yum makecache
