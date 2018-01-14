@@ -1,0 +1,4 @@
+newname=laravel_homestead
+mkdir $newname;cd $newname
+vagrant init $newname
+vagrant up
