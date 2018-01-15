@@ -24,13 +24,13 @@ docker pull centos
 #创建docker-SSH镜像
 dfpath=/root/ssh
 mkdir $dfpath
-wget -P $dfpath raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
+wget -P $dfpath raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile/dockerfile-ssh
 docker build -t centos:ssh -f $dfpath/dockerfile-ssh $dfpath
 
 #创建docker-Git镜像
 dfpath=/root/git
 mkdir $dfpath
-wget -P $dfpath 'https://raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-git'
+wget -P $dfpath 'https://raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile/dockerfile-git'
 docker build -t centos:git -f $dfpath/dockerfile-git $dfpath
 
 #启动git-server容器
