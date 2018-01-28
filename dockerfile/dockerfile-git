@@ -29,7 +29,7 @@ RUN sed -i 's/.ssh\/authorized_keys/\/home\/git\/.ssh\/authorized_keys/g' /etc/s
 
 #配置git服务
 #安装git服务
-RUN yum install -y git
+RUN yum install -y git    #或者使用命令 RUN echo Y|yum install git
 #启动git服务
 #CMD systemctl start git
 #初始化git库
