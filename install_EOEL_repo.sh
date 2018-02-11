@@ -7,4 +7,4 @@ yum -y install epel-release
 yum clean all && yum makecache
 
 #查看更新后的源
-cd /etc/yum.repos.d/  ;  ll
+cd /etc/yum.repos.d/;ll
