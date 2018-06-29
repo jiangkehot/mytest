@@ -1,0 +1,9 @@
+#! /bin/bash
+
+path=\/etc\/bash_completion.d\/
+
+curl https://raw.githubusercontent.com/docker/machine/master/contrib/completion/bash/docker-machine-prompt.bash >$path machine-prompt.bash
+curl https://raw.githubusercontent.com/docker/machine/master/contrib/completion/bash/docker-machine-wrapper.bash >$path docker-machine-wrapper.bash
+curl https://raw.githubusercontent.com/docker/machine/master/contrib/completion/bash/docker-machine.bash >$path docker-machine.bash
+
+echo "PS1='[\u@\h \W$(__docker_machine_ps1)]\$ '" >> $HOME/.bashrc
