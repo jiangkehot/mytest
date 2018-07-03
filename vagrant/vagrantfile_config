@@ -4,6 +4,8 @@ config.vm.define :test do |test|
     end
     test.vm.box = "centos/7"
     test.vm.hostname = "test"
+    #虚机不要占用网关ip，*.*.*.1，一般由宿主主机占用。
+    #ps：<ubuntu18.04> & <VirtualBox 5.2.14 for ubuntu18.04> & <Vagrant 2.1.2 for Debian>中,虚机占101，网关占1，但ssh登录101时，实际被引导至网关*.*.*.1,这有可能是新版本的BUG
     test.vm.network :private_network, ip: "11.11.1.11"
     test.vm.provision "shell", path: "vagrantup.sh"
     test.vm.network "forwarded_port", guest: 80, host: 8080
