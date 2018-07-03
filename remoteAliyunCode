@@ -1,0 +1,11 @@
+#关联阿里云库
+git remote add aliyun git@code.aliyun.com:univerdream/mytest.git
+
+#第一次推送阿里云
+git push -u aliyun master
+
+#分别推送github和阿里云
+#推送git
+git push origin master
+#推送aliyun
+git push aliyun master
