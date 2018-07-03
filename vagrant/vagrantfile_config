@@ -8,6 +8,7 @@ config.vm.define :test do |test|
     test.vm.provision "shell", path: "vagrantup.sh"
     test.vm.network "forwarded_port", guest: 80, host: 8080
     test.vm.synced_folder "../data", "/vagrant_data"
+    test.ssh.username = 'root'
     test.ssh.private_key_path = '~/.ssh/id_rsa' 
    # test.ssh.forward_agent = true
 end
