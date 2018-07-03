@@ -9,3 +9,6 @@ git push -u aliyun master
 git push origin master
 #推送aliyun
 git push aliyun master
+
+#同时推送
+git push aliyun master && git push origin master
