@@ -1,6 +1,6 @@
 #! /bin/bash
 
-#安装docker(Ubuntu)
+#安装docker
 
 
 #当shell语句错误即停止，防止错误继续执行
@@ -15,7 +15,7 @@ curl -fsSL https://get.docker.com/ | sh
 
 
 
-# #cloudman的方式
+# #cloudman的方式 安装docker(Ubuntu)
 # # 安装包，允许 apt 命令 HTTPS 访问 Docker 源。
 # sudo apt-get install \
 # apt-transport-https \
