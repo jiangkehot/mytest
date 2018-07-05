@@ -33,4 +33,4 @@ $(lsb_release -cs) \
 stable"
 
 #安装docker社区版
-sudo apt-get install docker-ce
+sudo apt-get install docker-ce -y
