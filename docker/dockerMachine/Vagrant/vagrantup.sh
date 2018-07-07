@@ -5,6 +5,9 @@
 #当shell语句错误即停止，防止错误继续执行
 set -e
 
+#切换至root
+sudo -i
+
 #设置系统时间为CTS时间
 ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
@@ -23,3 +26,19 @@ curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/doc
 
 #添加docker-machine补全功能的脚本
 #curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/dockerMachine/dockerMachineCompletion.sh|sh -x
+
+
+#生成秘钥对
+#root秘钥对
+sudo ssh-keygen -t rsa -C "jiangkehot@root"
+#vagrant秘钥对
+# ssh-keygen -t rsa -C "jiangkehot@vagrant"
+
+#推送公钥
+sudo cat /root/.ssh/id_rsa.pub > /root/.ssh/authorized_keys
+
+
+
+
+
+#

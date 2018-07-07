@@ -22,8 +22,10 @@ Vagrant.configure("2") do |config|
     manager.vm.hostname = "manager"
     manager.vm.network :private_network, ip: "192.168.56.101"
     manager.vm.synced_folder "/Users/", "/Users/", type: "virtualbox"
-    manager.vm.synced_folder "/Users/jiangke/.docker/machine/machines/", "/root/.docker/machine/machines/", type: "virtualbox"
+    # manager.vm.synced_folder "/Users/jiangke/.docker/machine/machines/", "/root/.docker/machine/machines/", type: "virtualbox"
     # manager.vm.synced_folder "/data", "/vagrant_data"
+    # manager.vm.synced_folder "$PWD/.vagrant/.ssh", "/root/.ssh"
+    manager.vm.synced_folder "/Users/jiangke/googleDrive/keke_dev/Vagrant/.vagrant/.ssh", "/root/.ssh"
     manager.vm.network "forwarded_port", guest: 8500, host: 8500
     # manager.ssh.username = "jiangke"
     # manager.ssh.private_key_path = "~/.ssh/id_rsa" 
@@ -38,6 +40,8 @@ Vagrant.configure("2") do |config|
     node1.vm.box = "ubuntu/trusty64"
     node1.vm.hostname = "node1"
     node1.vm.network :private_network, ip: "192.168.56.104"
+    node1.vm.synced_folder "/Users/jiangke/googleDrive/keke_dev/Vagrant/.vagrant/.ssh", "/root/.ssh"
+    # node1.vm.provision "shell", path: "vagrantupnode.sh"
   end
 
   config.vm.define :node2 do |node2|
@@ -47,6 +51,8 @@ Vagrant.configure("2") do |config|
     node2.vm.box = "ubuntu/trusty64"
     node2.vm.hostname = "node2"
     node2.vm.network :private_network, ip: "192.168.56.105"
+    node2.vm.synced_folder "/Users/jiangke/googleDrive/keke_dev/Vagrant/.vagrant/.ssh", "/root/.ssh"
+    # node2.vm.provision "shell", path: "vagrantupnode.sh"
   end
 
   # Disable automatic box update checking. If you disable this, then
