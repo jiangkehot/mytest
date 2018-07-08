@@ -14,6 +14,16 @@ sudo apt update && apt upgrade -y
 curl -fsSL https://get.docker.com/ | sh
 
 #docker加速
+#aliyun加速器
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://0po41ixf.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+#daocloud加速器
 curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://a13e0e77.m.daocloud.io
 
 
