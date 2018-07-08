@@ -13,6 +13,8 @@ sudo apt update && apt upgrade -y
 #官方方式：安装docker
 curl -fsSL https://get.docker.com/ | sh
 
+#docker加速
+curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://a13e0e77.m.daocloud.io
 
 
 # #cloudman的方式 安装docker(Ubuntu)
@@ -34,3 +36,7 @@ curl -fsSL https://get.docker.com/ | sh
 
 # #安装docker社区版
 # sudo apt-get install docker-ce -y
+
+# #docker加速
+# curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://a13e0e77.m.daocloud.io
+ 
