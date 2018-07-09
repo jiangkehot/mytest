@@ -9,7 +9,7 @@ vagrant box list
 #创建目录并初始化
 #创建并进入目录virtualboxbase
 vmdirname=virtualboxbase
-mkdir $vmdirname && cd $PWD/$vmdirname
+mkdir $vmdirname && cd $vmdirname
 #vagrant初始化目录
 echo 'Box样例，如 centos/7 、ubuntu/xenial64 、ubuntu/trusty64 等'
 echo '具体请打开VagrantCloud官网查看 https://app.vagrantup.com/boxes/search'
