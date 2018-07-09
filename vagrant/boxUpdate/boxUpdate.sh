@@ -49,7 +49,9 @@ if [ `Get_Dist_Pm` = "yum" ]; then
     #wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 
     #生成缓存
-    yum makecache    
+    yum makecache   
+    
+    sudo `Get_Dist_Pm` update -y && sudo `Get_Dist_Pm` upgrade -y
 fi
 
 
@@ -60,10 +62,8 @@ if [ `Get_Dist_Pm` = "apt" ]; then
 
     #替换阿里云的源
     sudo sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
+    sudo `Get_Dist_Pm` update && sudo `Get_Dist_Pm` upgrade -y
 fi
-
-
-sudo `Get_Dist_Pm` update && sudo `Get_Dist_Pm` upgrade -y
 
 
 
