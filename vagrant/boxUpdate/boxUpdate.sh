@@ -63,7 +63,7 @@ if [ `Get_Dist_Pm` = "apt" ]; then
 fi
 
 
-sudo `Get_Dist_Pm` update && sudo `Get_Dist_Pm` upgrade
+sudo `Get_Dist_Pm` update && sudo `Get_Dist_Pm` upgrade -y
 
 
 
