@@ -6,7 +6,7 @@
 set -e
 
 #设置系统时间为CTS时间
-ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+sudo ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 
 Get_Dist_Pm()
@@ -39,7 +39,7 @@ Get_Dist_Pm()
 }
 
 
-if [[ $Get_Dist_Pm="yum" ]]; then
+if [ `Get_Dist_Pm` = "yum" ]; then
     #备份系统yum源
     mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 
@@ -53,7 +53,7 @@ if [[ $Get_Dist_Pm="yum" ]]; then
 fi
 
 
-if [[ $Get_Dist_Pm="apt" ]]; then
+if [ `$Get_Dist_Pm` = "apt" ]; then
     #statements
     #备份源 
     cp  /etc/apt/sources.list  /etc/apt/sources.list_bak
@@ -63,7 +63,7 @@ if [[ $Get_Dist_Pm="apt" ]]; then
 fi
 
 
-echo 'sudo $Get_Dist_Pm update && sudo $Get_Dist_Pm upgrade'
+sudo `Get_Dist_Pm` update && sudo `Get_Dist_Pm` upgrade
 
 
 
