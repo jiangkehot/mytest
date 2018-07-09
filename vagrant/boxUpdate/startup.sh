@@ -1,5 +1,8 @@
 #! /bin/bash
 
+#可以使用以下命令在本地执行此脚本，其中sh -s 'XXXX'为提供参数命令
+#curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/vagrant/boxUpdate/startup.sh | sh -s 'ubuntu/trusty64' -x
+
 #当shell语句错误即停止，防止错误继续执行
 set -e
 
