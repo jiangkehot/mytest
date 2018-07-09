@@ -17,7 +17,7 @@ mkdir $vmdirname && cd $vmdirname
 echo 'Box样例，如 centos/7 、ubuntu/xenial64 、ubuntu/trusty64 等'
 echo '具体请打开VagrantCloud官网查看 https://app.vagrantup.com/boxes/search'
 read -p "请输入要初始化的box：" boxname
-vagrant init $boxname
+vagrant init $boxname$1
 #添加vagrant启动时执行的shell脚本路径
 if [ `uname` = "Linux" ]; then
 	#statements
