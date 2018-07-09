@@ -53,7 +53,7 @@ if [ `Get_Dist_Pm` = "yum" ]; then
 fi
 
 
-if [ `$Get_Dist_Pm` = "apt" ]; then
+if [ `Get_Dist_Pm` = "apt" ]; then
     #statements
     #备份源 
     cp  /etc/apt/sources.list  /etc/apt/sources.list_bak
