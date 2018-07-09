@@ -41,7 +41,7 @@ vagrant up
 #docker build -t centos:ssh https://raw.githubusercontent.com/jiangkehot/jiang_test/master/dockerfile-ssh
 #exit && exit
 
-boxnameUpdate="$boxname"_update
+boxnameUpdate="$boxname"_`date "+%Y%m%d"`
 #一切更新完毕之后，使用vagrant package打包生成virtualbox
 vagrant package --output $boxnameUpdate
 
