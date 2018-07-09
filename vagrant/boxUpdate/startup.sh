@@ -18,9 +18,12 @@ mkdir $vmdirname && cd $vmdirname
 echo 'Box样例，如 centos/7 、ubuntu/xenial64 、ubuntu/trusty64 等'
 echo '具体请打开VagrantCloud官网查看 https://app.vagrantup.com/boxes/search'
 
+#################################貌似这两个语句之间的空行非常重要 #############
+#貌似这两个语句之间的空行非常重要，如果没有，curl -fsSL URL | sh -s 'XXX' -x时，就会报错，提示路径不对，无法vuagrant init初始化
 read -p "请输入要初始化的box：" boxname
-vagrant init $boxname$1
 
+vagrant init $boxname$1
+############################貌似这两个语句之间的空行非常重要 END #############
 
 #添加vagrant启动时执行的shell脚本路径
 if [ `uname` = "Linux" ]; then
