@@ -15,7 +15,7 @@ set -e
 # sudo apt update && apt-get update
 
 #将manager对应公钥在验证表里注册，配置免密登录
-sudo cat /vagrant/ssh/id_rsa.pub > /root/.ssh/authorized_keys
+sudo cat /vagrant/.vagrant/myssh/id_rsa.pub > /root/.ssh/authorized_keys
 sudo curl https://raw.githubusercontent.com/jiangkehot/mytest/master/ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 
 # #docker加速

@@ -13,7 +13,7 @@ set -e
 # curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/apt/apt_repo.sh | sh -x 
 
 #安装docker
-curl -fsSL https://github.com/jiangkehot/mytest/blob/master/docker/installDocker.sh | sh -x 
+curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/installDocker.sh | sh -x 
 
 
 #安装docker-machine
@@ -22,7 +22,7 @@ curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/doc
 #生成秘钥对
 # sudo cp -r /vagrant/ssh/id_rsa* /root/.ssh/
 sudo ssh-keygen -q -t rsa -b 2048 -f /root/.ssh/manager_rsa_key -N '' -C "root_jiang@manager"
-mkdir -p /vagrant/ssh && sudo cp -r /root/.ssh/manager_rsa_key* /vagrant/ssh/
+mkdir -p /vagrant/.vagrant/myssh && sudo cp -r /root/ssh/manager_rsa_key* /vagrant/.vagrant/myssh/
 sudo curl https://raw.githubusercontent.com/jiangkehot/mytest/master/ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 # sudo ssh-keygen -t rsa -C "jiangkehot@root"
 # sudo cp -r /home/vagrant/.ssh/id_rsa* /root/.ssh/
