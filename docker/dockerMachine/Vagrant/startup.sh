@@ -8,7 +8,7 @@ set -e
 
 
 #创建并进入目录Vagrant
-mkdir Vagrant$1 && cd Vagrant$1
+mkdir dmVagrant$1 && cd dmVagrant$1
 
 
 #下载sh脚本
