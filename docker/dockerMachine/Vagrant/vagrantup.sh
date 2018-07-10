@@ -13,7 +13,7 @@ set -e
 # curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/apt/apt_repo.sh | sh -x 
 
 #安装docker
-curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/installDocker.sh | sh -x 
+# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/installDocker.sh | sh -x 
 
 
 #安装docker-machine
