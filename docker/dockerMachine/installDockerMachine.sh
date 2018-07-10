@@ -9,4 +9,6 @@ curl -L https://github.com/docker/machine/releases/download/v0.9.0/docker-machin
 
 
 #添加docker-machine补全功能的脚本
-curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/dockerMachine/dockerMachineCompletion.sh| sh -x
+#因为ubuntu执行时报错，原因是dash作怪，因此执行时声明是bash,不是写sh
+# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/dockerMachine/dockerMachineCompletion.sh| sh -x
+curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/dockerMachine/dockerMachineCompletion.sh| bash -x
