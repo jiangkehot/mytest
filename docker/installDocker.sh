@@ -11,7 +11,7 @@ sudo apt update && apt upgrade -y
 
 
 #官方方式：安装docker
-curl -fsSL https://get.docker.com/ | sh
+curl -fsSL https://get.docker.com/ | sh -x
 
 #docker加速
 #aliyun加速器
