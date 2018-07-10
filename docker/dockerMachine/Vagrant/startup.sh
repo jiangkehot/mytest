@@ -12,7 +12,7 @@ mkdir dmVagrant$1 && cd dmVagrant$1
 
 
 #下载sh脚本
-scripts=( Vagrantfile vagrantup.sh vagrantupnode.sh )
+scripts=( Vagrantfile vagrantup.sh vagrantupnode.sh ubuntu-xenial-16.04-cloudimg-console.log )
 for i in "${scripts[@]}"; do 
 	wget https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/dockerMachine/Vagrant/${i} \
 	-P ./
