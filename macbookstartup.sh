@@ -15,23 +15,22 @@
 
 brew install \
 # git \
-wget \
 # python3 \
-
+wget 
 
 #cask_GUI
-brew update && brew cask install /
-# alfred /
-# launchrocket /
-google-chrome /
-# adobe-photoshop-cs6 /
+brew update && brew cask install \
+# alfred \
+# launchrocket \
+google-chrome \
+# adobe-photoshop-cs6 \
 #
 #coding tools
-macvim /
-pycharm /
-sublime-text /
-sequel-pro /
-# filezilla /
+macvim \
+pycharm \
+sublime-text \
+sequel-pro 
+# filezilla \
 
 
 #配置vim
