@@ -13,23 +13,25 @@
 #install Hmoebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+
 brew install \
+wget \
 # git \
-# python3 \
-wget 
+# python3 \ #注释掉的只能放在最后，不能放在换行符之间，否则会报错。
 
 #cask_GUI
 brew update && brew cask install \
-# alfred \
-# launchrocket \
 google-chrome \
 # adobe-photoshop-cs6 \
-#
+# alfred \
+# launchrocket \
+
 #coding tools
+brew cask install \
 macvim \
 pycharm \
 sublime-text \
-sequel-pro 
+sequel-pro \
 # filezilla \
 
 
