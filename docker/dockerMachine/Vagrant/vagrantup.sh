@@ -10,7 +10,7 @@ ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 #替换为阿里云的源：
 # cp  /etc/apt/sources.list  /etc/apt/sources.list_bak && sudo sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && sudo apt update && apt-get update
-curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/apt/apt_repo.sh | sh -x 
+curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/apt/apt_repo.sh | sh -x 
 
 #安装docker
 # curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/installDocker.sh | sh -x 
