@@ -7,7 +7,7 @@
 #或者，若不需要修改可执行 curl -fsSL  https://raw.githubusercontent.com/jiangkehot/mytest/master/macbookstartup.sh | sh -x
 
 #Appstore: wechat/ Evernote/ MindNode/ QQ/
-#Safari: /yinpin.sogou.com /Astrill /docker /VirtualBox /vagrant /
+#Safari: /yinpin.sogou.com /Astrill /googleDrive /docker /VirtualBox /vagrant /
 
 #sh -x
 #install Hmoebrew
