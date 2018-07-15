@@ -24,7 +24,7 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 #daocloud加速器
-curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://a13e0e77.m.daocloud.io
+#curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://a13e0e77.m.daocloud.io
 
 
 # #cloudman的方式 安装docker(Ubuntu)
