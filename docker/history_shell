@@ -21,4 +21,11 @@ docker-machine create -d generic --generic-ip-address=192.168.56.104 --generic-s
 
 vagrant box list | cat - | awk '{print $1}'    # 列出box的名字 
 
+# vagrant box list > aaa
+# for i in $(cat aaa | awk '{print $1}');do
+for i in $(vagrant box list | cat - | awk '{print $1}');do
+> vagrant box remove $i
+> done
+
+
 ############# sehll end #################
