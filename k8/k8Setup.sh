@@ -1,4 +1,5 @@
 #! /bin/bash
+# curl https://raw.githubusercontent.com/jiangkehot/mytest/master/k8/k8Setup.sh | sh -x
 
 set -e
 
