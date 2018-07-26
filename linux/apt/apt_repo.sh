@@ -1,4 +1,6 @@
 #! /bin/bash
+# curl https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/apt/apt_repo.sh | sh -x
+
 
 #替换为国内源以提高访问速度
 
