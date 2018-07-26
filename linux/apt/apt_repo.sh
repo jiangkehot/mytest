@@ -19,4 +19,4 @@ sudo sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
 #更新源（并升级软件包）
 # sudo apt update && apt-get update
 # sudo apt update && apt upgrade
-sudo apt update && apt upgrade -y
+sudo apt update && apt upgrade -y && apt autoremove -y
