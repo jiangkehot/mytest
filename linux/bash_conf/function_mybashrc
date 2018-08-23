@@ -3,7 +3,7 @@
 # 向.bash_profile添加执行文件的命令
 
 function mybashrc(){
-	sudo cat ~/.bash_profile << 'EOF'
+	sudo cat ~/.bash_profile <<-'EOF'
 	  {
 	    if [ -f ~/.bashrc ]; then
 		    . ~/.mybashrc
