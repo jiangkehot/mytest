@@ -1,6 +1,6 @@
 # ~/.mybashrc
 
-#shell命令：curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/mybashrc.sh -o .mybashrc && curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/function_mybashrc | sh -x
+#shell命令：curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/mybashrc -o .mybashrc && curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/function_mybashrc | sh -x
 
 # 打开目录，并列出所有内容
 alias cdl='cd $1 && ls -la --color=auto $!'
