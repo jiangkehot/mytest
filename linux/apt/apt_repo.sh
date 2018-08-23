@@ -1,4 +1,6 @@
 #! /bin/bash
+# curl https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/apt/apt_repo.sh | sh -x
+
 
 #替换为国内源以提高访问速度
 
@@ -19,4 +21,4 @@ sudo sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
 #更新源（并升级软件包）
 # sudo apt update && apt-get update
 # sudo apt update && apt upgrade
-sudo apt update
+sudo apt update && apt upgrade -y && apt autoremove -y
