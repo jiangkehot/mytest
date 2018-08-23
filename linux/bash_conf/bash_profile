@@ -1,5 +1,5 @@
 # .bash_profile
-#shell命令：curl fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/bash_profile -o ~/.bash_profile
+#shell命令：curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/bash_profile -o ~/.bash_profile
 
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
