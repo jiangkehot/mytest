@@ -6,13 +6,15 @@ function cdl(){
 
 	if [ -z "$1" ]; then
 	  	dir=$HOME
+  	elif [ -z `dirname "$1" | grep '^/'` ]; then
+  		dir="$PWD/$1"
   	else
-  		dir="`cd $(dirname $1); pwd`/$1"
+		dir=$1
 	fi  
 
 
 	if [ -d "$dir" ]; then
-		cd "$dir" && ls -la "$dir"
+		cd "$dir" && ls -lah "$dir"
 	else
 		echo "$dir不是目录"
 	fi  	
