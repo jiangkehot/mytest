@@ -6,7 +6,7 @@ function cdl(){
 	if [ -z "$1" ]; then
 	  	dir=$HOME
   	else
-  		dir=$1
+  		dir="`cd $(dirname $1); pwd`/$1"
 	fi  
 
 
