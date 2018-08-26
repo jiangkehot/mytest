@@ -7,7 +7,7 @@ function cdl(){
 	if [ -z "$1" ]; then
 	  	dir=$HOME
   	elif [ -z `dirname "$1" | grep '^/'` ]; then
-  		dir="$PWD/$1"
+  		dir="$PWD$1"
   	else
 		dir=$1
 	fi  
