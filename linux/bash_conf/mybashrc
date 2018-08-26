@@ -3,7 +3,7 @@
 #shell命令：curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/mybashrc -o .mybashrc && curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/function_mybashrc | sh -x
 
 # 打开目录，并列出所有内容
-alias cdl='cd $1 && ls -la --color=auto $!'
+# alias cdl='cd $1 && ls -la --color=auto $!'  #此命令测试无效，已被此脚本取代：https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/cdl.sh
 
 # （默认使用颜色）列出所有内容
 alias ll='ls -la --color=auto'
