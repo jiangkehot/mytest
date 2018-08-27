@@ -4,11 +4,9 @@
 
 function mybashrc(){
 	sudo tee -a ~/.bash_profile <<-'EOF'
-	  {
 	    if [ -f ~/.bashrc ]; then
 		    . ~/.mybashrc
 	    fi
-	  }
 	EOF
 }
 
