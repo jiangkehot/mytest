@@ -4,6 +4,8 @@
 
 function mybashrc(){
 	sudo tee -a ~/.bash_profile <<-'EOF'
+	    \# 除.bashrc 外，新增个人设置
+	    
 	    if [ -f ~/.bashrc ]; then
 		    . ~/.mybashrc
 	    fi
