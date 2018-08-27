@@ -7,7 +7,7 @@ function mybashrc(){
 	    
 	    # 除.bashrc 外，新增个人设置
 	    
-	    if [ -f ~/.bashrc ]; then
+	    if [ -f ~/.mybashrc ]; then
 		    . ~/.mybashrc
 	    fi
 	EOF
