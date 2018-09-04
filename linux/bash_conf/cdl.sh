@@ -6,7 +6,7 @@ function cdl(){
 
 	if [ -z "$1" ]; then
 	  	dir=$HOME
-  	elif [ -z `grep '^/' "$1"` ]; then
+  	elif [ -z `dirname "$1" | grep '^/'` ]; then  # bug: grep不能操作目录，这里$1是目录
   		if [[ "$PWD" == '/' ]]; then  # bug：字符串比较不能用数学比较符-eq，需要用==
   			dir="/$1"
   		else
