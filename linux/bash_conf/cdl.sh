@@ -7,7 +7,7 @@ function cdl(){
 	if [ -z "$1" ]; then
 	  	dir=$HOME
   	elif [ -z `grep '^/' "$1"` ]; then
-  		if [[ "$PWD" -eq '/' ]]; then
+  		if [[ "$PWD" == '/' ]]; then  # bug：字符串比较不能用数学比较符-eq，需要用==
   			dir="/$1"
   		else
   			dir="$PWD/$1"
