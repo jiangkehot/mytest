@@ -1,0 +1,33 @@
+#! /bin/bash
+
+VPN_SERVER_IP=47.90.200.194
+VPN_LOCAL_IP=114.242.249.90
+# 创建 xl2tpd 控制文件：
+mkdir -p /var/run/xl2tpd
+touch /var/run/xl2tpd/l2tp-control
+
+#重启服务：
+# service strongswan restart
+# service xl2tpd restart
+/bin/systemctl restart strongswan.service
+/bin/systemctl restart xl2tpd.service
+
+sleep 3
+
+#开始 IPsec 连接：
+# CentOS/RHEL & Fedora
+strongswan up myvpn
+
+#开始 L2TP 连接：
+echo "c myvpn" > /var/run/xl2tpd/l2tp-control
+
+
+sleep 3
+
+route add $VPN_SERVER_IP gw $(ip route | grep def | awk '{print $3}')
+route add $VPN_LOCAL_IP gw $(ip route | grep def | awk '{print $3}')
+
+#route add default dev ppp0
+route add -host dev ppp0
+
+wget -qO- http://ipv4.icanhazip.com; echo

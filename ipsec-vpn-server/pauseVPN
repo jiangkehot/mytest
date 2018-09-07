@@ -1,0 +1,7 @@
+#! /bin/bash
+
+route del default dev ppp0
+
+# CentOS/RHEL & Fedora
+echo "d myvpn" > /var/run/xl2tpd/l2tp-control
+strongswan down myvpn
