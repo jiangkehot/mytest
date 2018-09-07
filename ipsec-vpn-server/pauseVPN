@@ -1,4 +1,5 @@
 #! /bin/bash
+# VPN客户端停止脚本
 
 route del default dev ppp0
 

@@ -1,9 +1,15 @@
 #! /bin/bash
+#VPN客户端安装脚本
 
-VPN_SERVER_IP=47.90.200.194
-VPN_IPSEC_PSK=6gNFKwgbLV4BMKZL
-VPN_USER=vpnuser
-VPN_PASSWORD=5uVTH4UFUZSP8tsV
+read -p "输入VPN服务器IP:" VPN_SERVER_IP
+read -p "输入VPN_IPSEC_PSK：" VPN_IPSEC_PSK
+read -p "输入用户名：" VPN_USER
+read -p "输入密码：" VPN_PASSWORD
+
+# VPN_SERVER_IP=47.90.200.194
+# VPN_IPSEC_PSK=6gNFKwgbLV4BMKZL
+# VPN_USER=vpnuser
+# VPN_PASSWORD=5uVTH4UFUZSP8tsV
 
 # 配置 strongSwan：
 
