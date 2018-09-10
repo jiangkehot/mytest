@@ -7,7 +7,7 @@ services:
       - "4500:4500/udp"
       - "500:500/udp"
     volumes:
-      - /lib/modules: /lib/modules:ro
+      - /lib/modules:/lib/modules:ro
     restart: always
     container_name: ipsec-vpn-server
     environment:
