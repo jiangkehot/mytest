@@ -22,6 +22,8 @@ sleep 3
 # CentOS/RHEL & Fedora
 strongswan up myvpn
 
+sleep 3
+
 #开始 L2TP 连接：
 echo "c myvpn" > /var/run/xl2tpd/l2tp-control
 
