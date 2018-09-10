@@ -1,0 +1,17 @@
+version: "3"
+services:
+
+  ipsec-vpn-server:
+    image: hwdsl2/ipsec-vpn-server
+    ports:
+      - "4500:4500/udp"
+      - "500:500/udp"
+    volumes:
+      - /lib/modules: /lib/modules:ro
+    restart: always
+    container_name: ipsec-vpn-server
+    environment:
+      - VPN_IPSEC_PSK=6gNFKwgbLV4BMKZL
+      - VPN_USER=vpnuser
+      - VPN_PASSWORD=5uVTH4UFUZSP8tsV
+    privileged: "true"     
