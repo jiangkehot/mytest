@@ -25,7 +25,7 @@ myfunction(){
 
 
 read -p "输入VPN服务器IP:" VPN_SERVER_IP
-OLD_VPN_SERVER_IP='59.110.45.1'
+OLD_VPN_SERVER_IP='47.90.240.147'
 myfunction
 
 
