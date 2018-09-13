@@ -2,6 +2,8 @@
 # VPN客户端停止脚本
 
 route del default dev ppp0
+# 移除之前添加的主机路由，不太严谨，暂时注释掉了，留着手动复制
+# for ip in $(route | grep 'UGH' | awk '{print $1}');do route del $ip ;done
 
 # CentOS/RHEL & Fedora
 echo "d myvpn" > /var/run/xl2tpd/l2tp-control
