@@ -33,7 +33,7 @@ sleep 3
 route add $VPN_SERVER_IP gw $(ip route | grep def | awk '{print $3}')
 route add $VPN_LOCAL_IP gw $(ip route | grep def | awk '{print $3}')
 
-#route add default dev ppp0
-route add -host dev ppp0
+route add default dev ppp0
+#route add -host dev ppp0
 
 wget -qO- http://ipv4.icanhazip.com; echo
