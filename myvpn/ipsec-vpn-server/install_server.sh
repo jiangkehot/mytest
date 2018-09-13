@@ -10,6 +10,7 @@ read -p "是否需要执行docker-machine create命令？请输入y/n，继续�
 
 eval $(docker-machine env testvpn)
 
+# 远程查看该模块是否加载成功：ssh 47.90.242.168 'lsmod | grep -i af_key'
 ssh $VPN_SERVER_IP 'sudo modprobe af_key'
 
 docker-compose up -d
