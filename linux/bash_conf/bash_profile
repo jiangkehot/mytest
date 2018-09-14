@@ -22,4 +22,4 @@ HISTFILESIZE=5000
 export HISTTIMEFORMAT='%F %T '
 
 # 判断是否存在cdl命令
-[ -f `which cdl` ] && source `which cdl`
+[ -f `which cdl` ] && source `which cdl` >> /dev/null
