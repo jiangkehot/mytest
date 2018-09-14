@@ -58,5 +58,5 @@ myfunction(){
 
 
 
-OLD_VPN_SERVER_IP='11.11.111.222'
+OLD_VPN_SERVER_IP='47.90.240.147'
 myfunction
