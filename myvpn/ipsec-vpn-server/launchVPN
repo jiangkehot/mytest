@@ -35,7 +35,7 @@ done
 #route add $VPN_SERVER_IP gw $(ip route | grep def | awk '{print $3}')
 #route add $VPN_LOCAL_IP gw $(ip route | grep def | awk '{print $3}')
 
-for ip in 34 45 52 64 74 172 216;do
+for ip in 23 34 45 52 64 74 172 216;do
   route add -net $ip.0.0.0/8 dev ppp0
 done
 
