@@ -13,4 +13,4 @@ read -p "是否需要执行docker-machine create命令,创建HOST）请输入 �
 
 [ "$x" == "y" ] && docker-machine create -d generic --generic-ip-address="$VPN_SERVER_IP" "$VPN_SERVER_HOSTNAME" 
 
-echo 'eval $(docker-machine env '"$VPN_SERVER_HOSTNAME) "'docker-compose up -d'
+echo 'eval $(docker-machine env '"$VPN_SERVER_HOSTNAME)"' && docker-compose up -d'
