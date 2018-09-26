@@ -1,6 +1,6 @@
 #! /bin/bash
 
-set -x
+set -e
 
 # 如果没有输入IP，则提示输入
 if [[ -z "$1" ]]; then
