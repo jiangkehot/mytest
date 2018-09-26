@@ -13,12 +13,14 @@ fi
 OVPN_DATA="ovpnData"
 docker volume create --name $OVPN_DATA
 
-# cd ./var/lib/docker/volumes/ovpnData/_data/
-
+# 将所文件及目录中含有的‘旧服务器ip’替换为‘新服务器ip’
 sh -x ./var/lib/docker/volumes/ovpnData/_data/zzzmod.sh $VPN_SERVER_IP
 
+# 将修改后的服务器配置文件上传至新服务器
 scp -r ./var $VPN_SERVER_IP:/ 
 
+# Start OpenVPN server process
 docker run --name myopenvpn -v ovpnData:/etc/openvpn -d -p 1194:1194/udp --restart=always --cap-add=NET_ADMIN kylemanna/openvpn
 
+# 开启日志
 docker logs -f myopenvpn
