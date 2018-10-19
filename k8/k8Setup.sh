@@ -29,6 +29,7 @@ systemctl enable kubelet.service && systemctl start kubelet.service
 
 # Enabling shell autocompletion 脚本补全
 yum install bash-completion -y
+echo "source <(kubectl completion bash)" >> ~/.bashrc
 
 # Aliyun CentOS
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
