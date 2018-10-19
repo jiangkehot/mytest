@@ -25,6 +25,10 @@ repo_gpgcheck=1
 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 EOF
 yum install -y kubelet kubeadm kubectl
+systemctl enable kubelet.service && systemctl start kubelet.service
+
+# Enabling shell autocompletion 脚本补全
+yum install bash-completion -y
 
 # Aliyun CentOS
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
