@@ -31,6 +31,13 @@ systemctl enable kubelet.service && systemctl start kubelet.service
 yum install bash-completion -y
 echo "source <(kubectl completion bash)" >> ~/.bashrc
 
+# 非root账户配置 kubectl
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+############################
 # Aliyun CentOS
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
@@ -44,3 +51,4 @@ EOF
 setenforce 0
 yum install -y kubelet kubeadm kubectl
 systemctl enable kubelet && systemctl start kubelet
+#############################
