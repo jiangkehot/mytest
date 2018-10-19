@@ -35,5 +35,5 @@ function pushimages(){
 #pull images
 for K8sImageName in $k8sImages; do
 		docker tag $bfRegistry/$K8sImageName $afRegistry/$K8sImageName
-		docker rmi $afRegistry/$K8sImageName
+		docker rmi $bfRegistry/$K8sImageName
 done
