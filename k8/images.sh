@@ -27,7 +27,7 @@ function pushimages(){
 		docker rmi $afRegistry/$K8sImageName
 	done
 
-	for imagesName in $k8sImages; do
+	for K8sImageName in $k8sImages; do
 		echo "docker pull $afRegistry/$K8sImageName"
 	done
 }
