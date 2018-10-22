@@ -33,5 +33,6 @@ Vagrant.configure("2") do |config|
     # node002.vm.provision "shell", path: "vagrantup.sh"
   end
 # vagrantup.sh
+# curl https://raw.githubusercontent.com/jiangkehot/mytest/master/ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 # yum update -y && curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun && systemctl start docker && docker ps
 end
