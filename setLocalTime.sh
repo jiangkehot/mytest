@@ -7,3 +7,5 @@
 
 #设置系统时间为CTS时间
 ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+# timedatectl set-timezone Asia/Shanghai
