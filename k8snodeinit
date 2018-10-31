@@ -1,0 +1,45 @@
+#! /bin/bash
+
+# 安装docker 
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+
+# Aliyun CentOS
+# 安装kubelet、kubeadm
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+setenforce 0
+yum install -y kubelet kubeadm
+systemctl enable kubelet && systemctl start kubelet
+
+#pull images
+kubeadm config images pull
+
+#关闭swap
+swapoff -a 
+sed 's/.*swap.*/#&/' /etc/fstab
+
+#禁止iptables对bridge数据进行处理
+cat <<EOF >  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl -p /etc/sysctl.conf
+
+#修改hosts文件
+cat >> /etc/hosts << EOF
+192.168.6.101   master1
+192.168.6.102   master2
+192.168.6.103   master3
+192.168.6.104   node1
+192.168.6.105   node2
+EOF
+
+#加入集群
+kubeadm join 10.10.1.101:6443 --token dklgz8.w9kcmbbd0jd1ddql --discovery-token-ca-cert-hash sha256:2787f8ef5689...
