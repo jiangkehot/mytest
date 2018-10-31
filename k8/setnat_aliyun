@@ -1,0 +1,31 @@
+# 搭建NAT网关就是为了实现在相同VPC内，没有公网IP的ECS借助有公网的ECS访问外网，或者是外网通过端口映射访问到内网服务器
+
+# SNAT：实现没有公网IP的ECS实例借助有公网的ECS访问外网，但是外网无法访问到内网IP；
+# DNAT：实现外网通过端口映射访问到内网服务器，但是不能实现内网ECS访问到外网。
+
+#开启ECS的ip转发功能
+sysctl -w net.ipv4.ip_forward=1  && sysctl -p
+
+# 设置VPC路由条目
+# 目标网段一定要填0.0.0.0/0
+# ECS实例选择有公网IP的那个实例
+
+# 设置iptables 的NAT转发规则
+
+# 设置SNAT规则
+iptables -t nat -I POSTROUTING -s 172.16.0.0/16 -j SNAT --to-source 172.16.107.49 # 此ip为可以访问外网的ip
+# 要永久生效，还需要保存在iptables配置文件中：
+service iptables save
+# 重启iptables使规则生效：
+systemctl restart iptables.service
+
+# 设置DNAT规则
+iptables -t nat -I PREROUTING -p tcp --dport 80 -j DNAT --to 172.16.93.38
+iptables -t nat -I POSTROUTING -p tcp --dport 80 -j MASQUERADE
+
+# 可以这样理解：
+# iptables -t nat -I PREROUTING -p tcp --dport 有公网IP的ECS端口号 -j DNAT --to 目标内网ECS的内网IP
+# iptables -t nat -I POSTROUTING -p tcp --dport 有公网IP的ECS端口号 -j MASQUERADE
+# 比如上面的示例中，是把有公网IP的ECS 80端口映射到了172.16.93.38这个内网实例的80端口
+# 前后端口映射不一致怎么办？简单啊，在/etc/sysconfig/iptables内的目标IP后面直接加特定的端口号就行
+# iptables -t nat -I POSTROUTING -s 172.16.0.0/16 -j SNAT --to-source 172.16.107.49:8080
