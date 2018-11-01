@@ -5,6 +5,8 @@
 
 #开启ECS的ip转发功能
 sysctl -w net.ipv4.ip_forward=1  && sysctl -p
+#读取net.ipv4.ip_forward值
+#sysctl net.ipv4.ip_forward 
 
 # 设置VPC路由条目
 # 目标网段一定要填0.0.0.0/0
