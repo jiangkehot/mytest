@@ -16,6 +16,7 @@ sysctl -w net.ipv4.ip_forward=1  && sysctl -p
 
 # 设置SNAT规则
 iptables -t nat -I POSTROUTING -s 172.16.0.0/16 -j SNAT --to-source 172.16.107.49 # 此ip为可以访问外网的ip
+iptables -t nat -A POSTROUTING -s 172.17.0.0/16 ! -o docker0 -j MASQUERADE  #等效于SNAT，属于SNAT一种，主要用于拨号上网等动态IP总是变化等场景
 # 要永久生效，还需要保存在iptables配置文件中：
 service iptables save
 # 重启iptables使规则生效：
