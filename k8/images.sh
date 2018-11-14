@@ -18,8 +18,8 @@ function pushimages(){
 	bfRegistry=$1
 	afRegistry=$2
 
-	# docker images --format "{{.Repository}}:{{.Tag}}"
-	k8sImages=$(docker images | awk '{print $1":"$2}' | grep "$bfRegistry" | sed "s/$bfRegistry\///g")
+	# k8sImages=$(docker images | awk '{print $1":"$2}' | grep "$bfRegistry" | sed "s/$bfRegistry\///g")
+	k8sImages=$(docker images --format "{{.Repository}}:{{.Tag}}")
 
 	#push images
 	for K8sImageName in $k8sImages; do
