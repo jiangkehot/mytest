@@ -2,6 +2,9 @@
 
 #安装docker
 
+# 方式一
+# curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+
 
 #当shell语句错误即停止，防止错误继续执行
 set -e
