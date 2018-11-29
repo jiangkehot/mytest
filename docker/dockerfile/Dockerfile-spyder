@@ -1,3 +1,3 @@
-FORM python
+FORM python:latest
 RUN pip install spyder wget bs4
 CMD ipython
