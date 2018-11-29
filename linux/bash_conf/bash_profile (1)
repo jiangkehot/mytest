@@ -1,0 +1,25 @@
+# .bash_profile
+#shell命令：curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/bash_profile -o ~/.bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/bin
+export PATH
+
+#额外的配置文件
+if [ -f ~/.mybashrc ]; then
+  . ~/.mybashrc
+fi
+
+# history size 以及为history添加时间戳和输出格式
+HISTSIZE=5000
+HISTFILESIZE=5000
+export HISTTIMEFORMAT='%F %T '
+
+# 判断是否存在cdl命令
+[ -f `which cdl` ] && source `which cdl`
