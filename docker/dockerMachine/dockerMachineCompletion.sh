@@ -6,6 +6,9 @@
 #当shell语句错误即停止，防止错误继续执行
 set -e
 
+# 安装脚本补全程序bash-completion
+yum install bash-completion -y
+
 # cd /etc/bash_completion.d/
 
 # wget -P . 'https://raw.githubusercontent.com/docker/machine/master/contrib/completion/bash/docker-machine-wrapper.bash'
