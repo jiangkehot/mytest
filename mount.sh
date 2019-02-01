@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/mount.sh | sh -x
+
 # vim /etc/rc.d/rc.local
 
 # 判断是否存在目录/data，如果没有，自动创建，然后挂载data目录
