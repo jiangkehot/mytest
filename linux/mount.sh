@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/mount.sh | sh -x
+# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/mount.sh | sh -x
 
 # vim /etc/rc.d/rc.local
 
