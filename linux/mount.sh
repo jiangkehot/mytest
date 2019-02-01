@@ -14,4 +14,4 @@ rpm -q nfs-utils || sudo yum install nfs-utils
 sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-uho45.cn-beijing.nas.aliyuncs.com:/root /root
 
 #判断是否存在用户jiangke，如果没有，自动创建，然后挂载jiangke的家目录
-[ `grep 'jiangke' /etc/passwd` ] || useradd -m -g root,wheel,docker jiangke && sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-uho45.cn-beijing.nas.aliyuncs.com:/home/jiangke /home/jiangke
+[ `grep 'jiangke' /etc/passwd` ] || useradd -m -g root,wheel jiangke && sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-uho45.cn-beijing.nas.aliyuncs.com:/home/jiangke /home/jiangke
