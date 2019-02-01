@@ -5,7 +5,7 @@
 # vim /etc/rc.d/rc.local
 
 # 判断是否安装了NFS客户端，如果没有，则自动安装
-rpm -q nfs-utils || sudo yum install nfs-utils
+rpm -q nfs-utils || sudo yum install -y nfs-utils
 
 # 判断是否存在目录/data，如果没有，自动创建，然后挂载data目录
 [ -d /data/ ] || mkdir /data && sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-uho45.cn-beijing.nas.aliyuncs.com:/ /data
