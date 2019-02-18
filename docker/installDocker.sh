@@ -10,22 +10,36 @@
 set -e
 
 #更新源&升级软件
-sudo apt update && apt upgrade -y
+#sudo apt update && apt upgrade -y
 
 
 #官方方式：安装docker
-curl -fsSL https://get.docker.com/ | sh -x
+#curl -fsSL https://get.docker.com/ | sh -x
+
+#CentOS
+
+#安装必要的一些系统工具
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+#添加docker的阿里云的源
+sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+#更新并安装相应版本
+sudo yum makecache fast
+dversion={-$1}
+sudo yum -y install docker-ce$dversion
+#设置开机启动，并启动docker
+sudo systemctl enable docker && sudo systemctl start docker
+
 
 #docker加速
 #aliyun加速器
-sudo mkdir -p /etc/docker
-sudo tee /etc/docker/daemon.json <<-'EOF'
-{
-  "registry-mirrors": ["https://0po41ixf.mirror.aliyuncs.com"]
-}
-EOF
-sudo systemctl daemon-reload
-sudo systemctl restart docker
+#sudo mkdir -p /etc/docker
+#sudo tee /etc/docker/daemon.json <<-'EOF'
+#{
+#  "registry-mirrors": ["https://0po41ixf.mirror.aliyuncs.com"]
+#}
+#EOF
+#sudo systemctl daemon-reload
+#sudo systemctl restart docker
 #daocloud加速器
 #curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://a13e0e77.m.daocloud.io
 
