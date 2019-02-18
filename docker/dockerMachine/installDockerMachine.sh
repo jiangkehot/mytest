@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/dockerMachine/installDockerMachine.sh | sh -x
+
 #当shell语句错误即停止，防止错误继续执行
 set -e
 
