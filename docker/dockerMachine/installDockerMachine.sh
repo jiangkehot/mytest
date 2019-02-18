@@ -3,9 +3,11 @@
 #当shell语句错误即停止，防止错误继续执行
 set -e
 
+echo 'docker-machine 教程页面：https://docs.docker.com/machine/install-machine/'
 
 #安装docker-machine
-curl -L https://github.com/docker/machine/releases/download/v0.9.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine && chmod +x /tmp/docker-machine && sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+read -p '请输入相应版本的下载地址，如=https://github.com/docker/machine/releases/download/v0.16.0' base
+curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/usr/local/bin/docker-machine && chmod +x /usr/local/bin/docker-machine
 
 
 #添加docker-machine补全功能的脚本
