@@ -8,8 +8,8 @@ set -e
 echo 'docker-machine 教程页面：https://docs.docker.com/machine/install-machine/'
 
 #安装docker-machine
+# read -p '请输入相应版本的下载地址，如=https://github.com/docker/machine/releases/download/v0.16.0' base
 base=https://github.com/docker/machine/releases/download/v0.16.0
-read -p '请输入相应版本的下载地址，如=https://github.com/docker/machine/releases/download/v0.16.0' base
 echo $base
 curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/usr/local/bin/docker-machine && chmod +x /usr/local/bin/docker-machine
 
