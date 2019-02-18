@@ -66,4 +66,6 @@ sudo systemctl enable docker && sudo systemctl start docker
 
 # #docker加速
 # curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://a13e0e77.m.daocloud.io
+
+echo '安装docker-machine：curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/dockerMachine/installDockerMachine.sh | sh -x'
  
