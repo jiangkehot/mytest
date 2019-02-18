@@ -1,4 +1,5 @@
 #! /bin/bash
+#curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/installDocker.sh | sh -s 18.06.2.ce-3.el7 -x   // -s 指定版本参数
 
 #安装docker
 
