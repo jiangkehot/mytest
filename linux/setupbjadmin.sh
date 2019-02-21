@@ -1,6 +1,6 @@
 # !/bin/bash
 
-# curl -O https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/setupbjadmin && sh -x setupbjadmin.sh
+# curl -O https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/setupbjadmin.sh && sh -x setupbjadmin.sh || rm -f setupbjadmin.sh
 
 set -e
 
