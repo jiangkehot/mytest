@@ -2,6 +2,8 @@
 
 set -e
 
+VPN_SERVER_IP=$1
+
 read -p "输入VPN服务器IP:" VPN_SERVER_IP
 
 # 远程查看该模块是否加载成功：ssh 47.90.242.168 'lsmod | grep -i af_key'
