@@ -1,6 +1,11 @@
 # !/bin/bash
 
+#curl https://raw.githubusercontent.com/jiangkehot/mytest/master/k8/k8Setup.sh | sh -x
+
 set -e
+
+# 激活非交互shell下的别名功能
+source ~/.bashrc
 
 #更新&升级
 dream yum update -y
