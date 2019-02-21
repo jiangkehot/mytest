@@ -1,6 +1,6 @@
 # !/bin/bash
 
-# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/setupbjadmin | sh -x
+# curl -O https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/setupbjadmin && sh -x setupbjadmin.sh
 
 set -e
 
@@ -25,11 +25,14 @@ dream 'cp /root/local/bin/docker-machine /usr/local/bin/docker-machine && curl -
 #安装k8s：
 dream 'curl https://raw.githubusercontent.com/jiangkehot/mytest/master/k8/k8Setup.sh | sh -x'
 
-#重命名&重启：
-rebjadmin
 
 ##设置定时任务：
 echo 'crontab -e  0 3 * * * sh /data/bak/root/todolist/todolist.sh'
+
+#重命名&重启：
+rebjadmin
+
+sleep 20
 
 # 登录服务器
 dream
