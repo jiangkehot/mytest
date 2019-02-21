@@ -45,7 +45,7 @@ gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors
 EOF
 
 # Set SELinux in permissive mode (effectively disabling it)
-setenforce 0
+# setenforce 0
 # sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
 yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
