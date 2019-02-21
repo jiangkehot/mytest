@@ -1,6 +1,9 @@
 #! /bin/bash
 
-# curl -O https://raw.githubusercontent.com/jiangkehot/mytest/master/myvpn/ipsec-vpn-server/install_server.sh && sh -x install_server.sh ; rm -f install_server.sh
+# curl -O https://raw.githubusercontent.com/jiangkehot/mytest/master/myvpn/ipsec-vpn-server/install_server.sh \
+&& curl -O https://raw.githubusercontent.com/jiangkehot/mytest/master/myvpn/ipsec-vpn-server/docker-compose.yml \
+&& sh -x install_server.sh ;\
+rm -f install_server.sh docker-compose.yml
 
 set -e
 
