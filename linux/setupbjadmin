@@ -1,0 +1,29 @@
+# !/bin/bash
+
+set -e
+
+#更新&升级
+dream yum update -y
+
+#重命名&重启：
+rebjadmin
+
+#挂载 root & data 目录：
+mymounts
+
+
+#安装指定版本docker：
+curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/installDocker.sh | sh -s 18.06.2.ce-3.el7 -x  
+
+#将jiangke添加至docker组：
+usermod -aG docker jiangke
+
+#安装docker-machine：
+cp /root/local/bin/docker-machine /usr/local/bin/docker-machine && curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/dockerMachine/dockerMachineCompletion.sh | sh -x
+
+#安装k8s：
+curl https://raw.githubusercontent.com/jiangkehot/mytest/master/k8/k8Setup.sh | sh -x
+
+
+##设置定时任务：
+echo 'crontab -e  0 3 * * * sh /data/bak/root/todolist/todolist.sh'
