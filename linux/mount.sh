@@ -8,10 +8,10 @@
 rpm -q nfs-utils || sudo yum install -y nfs-utils
 
 # 判断是否存在目录/data，如果没有，自动创建，然后挂载data目录
-[ -d /data/ ] || mkdir /data && sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-uho45.cn-beijing.nas.aliyuncs.com:/ /data
+[ -d /data/ ] || mkdir /data && sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-vuw80.cn-beijing.nas.aliyuncs.com:/ /data
 
 # 挂载/root目录
-sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-uho45.cn-beijing.nas.aliyuncs.com:/root /root
+sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-vuw80.cn-beijing.nas.aliyuncs.com:/root /root
 
 #判断是否存在用户jiangke，如果没有，自动创建，然后挂载jiangke的家目录
-[ `grep 'jiangke' /etc/passwd` ] || useradd -m -G root,wheel jiangke && sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-uho45.cn-beijing.nas.aliyuncs.com:/home/jiangke /home/jiangke
+[ `grep 'jiangke' /etc/passwd` ] || useradd -m -G root,wheel jiangke && sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-vuw80.cn-beijing.nas.aliyuncs.com:/home/jiangke /home/jiangke
