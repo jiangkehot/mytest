@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# alias mymounts='read -p "输入服务器IP：" serverIP && ssh root@${serverIP} "curl https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/mount.sh" | sh -x'
+# alias mymounts='read -p "输入服务器IP：" serverIP && ssh root@${serverIP} "curl https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/mount.sh | sh -x"'
 
 # curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/mount.sh | sh -x
 
