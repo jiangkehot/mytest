@@ -68,4 +68,8 @@ systemctl enable --now kubelet && systemctl start kubelet
 # ke
 echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
 
+# Enabling shell autocompletion 脚本补全
+yum install bash-completion -y
+echo "source <(kubectl completion bash)" >> ~/.bashrc
+
 kubeadm init --pod-network-cidr=10.244.0.0/16
