@@ -20,6 +20,7 @@ mkdir /etc/docker
 # Setup daemon.
 cat > /etc/docker/daemon.json <<EOF
 {
+  "bip": "172.26.0.1/16"
   "exec-opts": ["native.cgroupdriver=systemd"],
   "log-driver": "json-file",
   "log-opts": {
