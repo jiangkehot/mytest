@@ -3,6 +3,11 @@
 
 set -e
 
+# # install docker
+# curl -fsSL https://get.docker.com/ | sh -x
+# sudo systemctl enable docker && sudo systemctl start docker
+
+
 # # install kubelet / kubeadm / kubectl
 
 # # Ubuntu, Debian or HypriotOS
