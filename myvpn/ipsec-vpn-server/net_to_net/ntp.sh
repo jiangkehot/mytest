@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/myvpn/ipsec-vpn-server/net_to_net/ntp.sh | sh -x
+
 set -e
 
 yum update -y
