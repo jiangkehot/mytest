@@ -96,12 +96,12 @@ cat > /etc/ipsec.secrets <<EOF
 $localIP %any 0.0.0.0  : PSK "6gNFKwgbLV4BMKZL"
 EOF
 
-systemctl restart ipsec
+systemctl start ipsec
 
 ipsec verify
 
+# systemctl restart ipsec
 # ipsec auto --up net-to-net
-
 # ipsec auto --down net-to-net
 
 cat /etc/ipsec.secrets
