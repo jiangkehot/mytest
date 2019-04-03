@@ -77,7 +77,7 @@ conn net-to-$HOSTNAME
 	authby=secret
 	type=tunnel
 	left=$k8sServerIP
-	leftsubnet=$aclSubnet
+	leftsubnet=172.16.0.0/12
 	leftid=@k8sServer
 	leftnexthop=%defaultroute
 	right=%defaultroute
