@@ -55,7 +55,8 @@ yum install openswan -y
 
 
 PUBLIC_IP=$(wget -t 3 -T 15 -qO- http://ipv4.icanhazip.com) && echo $PUBLIC_IP
-
+k8sServerIP='47.90.251.10'
+aclSubnet='172.17.0.0/16'
 localIP=$(ip addr | grep eth0 | awk '/^[0-9]+: / {}; /inet.*global/ {print gensub(/(.*)\/(.*)/, "\\1", "g", $2)}') && echo $localIP
 
 ############################ nodes #############3
@@ -72,15 +73,15 @@ config setup
 	oe=off
 
 
-conn net-to-net
+conn net-to-$HOSTNAME
 	authby=secret
 	type=tunnel
-	left=47.89.187.199
-	leftsubnet=172.16.0.0/12
+	left=$k8sServerIP
+	leftsubnet=$aclSubnet
 	leftid=@k8sServer
 	leftnexthop=%defaultroute
 	right=%defaultroute
-	rightsubnet=172.16.0.0/12
+	rightsubnet=$aclSubnet
 	rightid=@$HOSTNAME
 	rightnexthop=%defaultroute
 	auto=add
@@ -105,7 +106,7 @@ ipsec verify
 
 cat /etc/ipsec.secrets
 
-sed -e s/\%defaultroute/$PUBLIC_IP/ -e s/47.89.187.199/\%defaultroute/ /etc/ipsec.conf
+sed -e s/\%defaultroute/$PUBLIC_IP/ -e s/$k8sServerIP/\%defaultroute/ /etc/ipsec.conf
 
 echo 'ipsec auto --up net-to-net'
 
