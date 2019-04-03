@@ -109,7 +109,7 @@ cat /etc/ipsec.secrets
 #sed -e s/\%defaultroute/$PUBLIC_IP/ -e s/$k8sServerIP/\%defaultroute/ /etc/ipsec.conf
 sed -e s/left=$k8sServerIP/left=\%defaultroute/ -e s/right=\%defaultroute/right=$PUBLIC_IP/ /etc/ipsec.conf
 
-echo 'ipsec auto --up net-to-net'
+echo 'ipsec auto --up net-to-$HOSTNAME'
 
 
 
