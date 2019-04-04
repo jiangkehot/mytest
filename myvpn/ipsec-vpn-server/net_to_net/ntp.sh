@@ -5,15 +5,6 @@
 
 set -e
 
-# 关于内核模块 modprobe af_key 
-# 加载内核模块
-sudo modprobe af_key
-# 开机加载内核模块
-cat >> /etc/modules-load.d/virtio-net.conf << EOF
-# Load virtio-net.ko at boot
-virtio-net
-EOF
-
 yum update -y
 
 
@@ -21,29 +12,9 @@ cat >> /etc/sysctl.conf <<EOF
 net.ipv4.ip_forward = 1
 net.ipv4.conf.default.rp_filter = 0
 net.ipv4.conf.eth0.rp_filter = 0
+net.ipv4.conf.all.rp_filter = 0
 EOF
 
-# cat >> /etc/sysctl.conf <<EOF
-# net.ipv4.ip_forward = 1
-# net.ipv4.conf.default.rp_filter = 0
-# net.ipv4.conf.all.accept_redirects = 0
-# net.ipv4.conf.all.send_redirects = 0
-# net.ipv4.conf.default.accept_redirects = 0
-# net.ipv4.conf.default.send_redirects = 0
-# EOF
-
-# cat >> /etc/sysctl.conf <<EOF
-# net.ipv4.ip_forward = 1
-# net.ipv4.conf.all.accept_source_route = 0
-# net.ipv4.conf.all.accept_redirects = 0
-# net.ipv4.conf.all.send_redirects = 0
-# net.ipv4.conf.all.rp_filter = 0
-# net.ipv4.conf.default.accept_source_route = 0
-# net.ipv4.conf.default.accept_redirects = 0
-# net.ipv4.conf.default.send_redirects = 0
-# net.ipv4.conf.default.rp_filter = 0
-# net.ipv4.conf.eth0.rp_filter = 0
-# EOF
 
 # 关闭icmp重定向
 sysctl -a | egrep "ipv4.*(accept|send)_redirects" | awk -F "=" '{print$1"= 0"}' >> /etc/sysctl.conf
@@ -105,21 +76,30 @@ EOF
 systemctl start ipsec
 
 
-
-
 cat << EOF
-# ipsec --version
-# ipsec verify
-# ipsec whack --trafficstatus  # //查看链接状态
-# systemctl status -l ipsec  # //查看正在链接的设备
-# netstat -anp | grep pluto
-# systemctl restart ipsec
-# ipsec auto --up net-to-net
-# ipsec auto --down net-to-net
+================================================
+systemctl restart ipsec
+ipsec --version
+ipsec verify
+ipsec whack --trafficstatus  # //查看链接状态
+systemctl status -l ipsec  # //查看正在链接的设备
+netstat -anp | grep pluto
+ipsec auto --up net-to-$HOSTNAME
+ipsec auto --down net-to-$HOSTNAME
+
+# 关于内核模块 modprobe af_key 
+# 加载内核模块
+sudo modprobe af_key
+# 开机加载内核模块
+cat >> /etc/modules-load.d/virtio-net.conf << EEOOFF
+# Load virtio-net.ko at boot
+virtio-net
+EEOOFF
+================================================
 EOF
 
 
-
+echo '###############服务器部分###########'
 cat /etc/ipsec.secrets
 
 sed -e s/left=$k8sServerIP/left=\%defaultroute/ -e s/right=\%defaultroute/right=$PUBLIC_IP/ /etc/ipsec.conf
