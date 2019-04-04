@@ -1,10 +1,10 @@
 #! /bin/bash
+# only CentOS! 此脚本仅适用于CentOS
 
 # curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/myvpn/ipsec-vpn-server/net_to_net/ntp.sh | sh -x
 
 set -e
 
-# only CentOS!
 # 关于内核模块 modprobe af_key 
 # 加载内核模块
 sudo modprobe af_key
