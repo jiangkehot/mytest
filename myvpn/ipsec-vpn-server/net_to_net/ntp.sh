@@ -4,6 +4,16 @@
 
 set -e
 
+# only CentOS!
+# 关于内核模块 modprobe af_key 
+# 加载内核模块
+sudo modprobe af_key
+# 开机加载内核模块
+cat >> /etc/modules-load.d/virtio-net.conf << EOF
+# Load virtio-net.ko at boot
+virtio-net
+EOF
+
 yum update -y
 
 
