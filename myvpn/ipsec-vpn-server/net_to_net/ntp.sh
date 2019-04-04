@@ -41,17 +41,9 @@ sysctl -a | egrep "ipv4.*(accept|send)_redirects" | awk -F "=" '{print$1"= 0"}' 
 sysctl -p
 
 # 关闭SELinux
-# setenforce 0
+setenforce 0
 
 yum install openswan -y
-
-# systemctl start ipsec
-
-# ipsec --version
-
-# ipsec verify
-
-# netstat -anp | grep pluto
 
 
 PUBLIC_IP=$(wget -t 3 -T 15 -qO- http://ipv4.icanhazip.com) && echo $PUBLIC_IP
@@ -60,7 +52,9 @@ serverSubnetPool='172.16.0.0/12'
 localIP=$(ip addr | grep eth0 | awk '/^[0-9]+: / {}; /inet.*global/ {print gensub(/(.*)\/(.*)/, "\\1", "g", $2)}') && echo $localIP
 localSubnetPool=$(ip r | grep "$localIP" | awk '{print $1}') && echo $localSubnetPool
 
-############################ nodes #############3
+
+# config
+
 cp /etc/ipsec.conf /etc/ipsec.conf_bk
 
 cat > /etc/ipsec.conf <<EOF
@@ -97,129 +91,27 @@ cat > /etc/ipsec.secrets <<EOF
 $localIP %any 0.0.0.0  : PSK "6gNFKwgbLV4BMKZL"
 EOF
 
+
 systemctl start ipsec
 
-ipsec verify
 
+# ipsec --version
+# ipsec verify
+# ipsec whack --trafficstatus  # //查看链接状态
+# systemctl status -l ipsec  # //查看正在链接的设备
+# netstat -anp | grep pluto
 # systemctl restart ipsec
 # ipsec auto --up net-to-net
 # ipsec auto --down net-to-net
 
+
+
 cat /etc/ipsec.secrets
 
-#sed -e s/\%defaultroute/$PUBLIC_IP/ -e s/$k8sServerIP/\%defaultroute/ /etc/ipsec.conf
 sed -e s/left=$k8sServerIP/left=\%defaultroute/ -e s/right=\%defaultroute/right=$PUBLIC_IP/ /etc/ipsec.conf
 
 echo "ipsec auto --up net-to-$HOSTNAME"
 
 
 
-
-
-
-###############
-#39.105.221.66
-# 172.17.3.224
-# 172.17.3.224 %any 0.0.0.0  : PSK "6gNFKwgbLV4BMKZL"
-# version 2.0   
-
-# config setup
-# 	protostack=netkey
-# 	nat_traversal=yes
-# 	virtual_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12
-# 	oe=off
-# 	interfaces=%defaultroute
-
-
-# conn net-to-net
-# 	authby=secret
-# 	type=tunnel
-# 	left=172.17.3.224
-# 	leftsubnet=172.16.0.0/12
-# 	leftid=@test1
-# 	leftnexthop=%defaultroute
-# 	right=47.89.185.210
-# 	rightsubnet=192.168.0.0/16
-# 	rightid=@test2
-# 	rightnexthop=%defaultroute
-# 	auto=add
-
-
-# 47.89.185.210
-# 192.168.80.39
-# 192.168.80.39 %any 0.0.0.0  : PSK "6gNFKwgbLV4BMKZL"
-# version 2.0   
-
-# config setup
-# 	protostack=netkey
-# 	nat_traversal=yes
-# 	virtual_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12
-# 	oe=off
-# 	interfaces=%defaultroute
-
-
-# conn net-to-net
-# 	authby=secret
-# 	type=tunnel
-# 	left=39.105.221.66
-# 	leftsubnet=172.16.0.0/12
-# 	leftid=@test1
-# 	leftnexthop=%defaultroute
-# 	right=192.168.80.39
-# 	rightsubnet=192.168.0.0/16
-# 	rightid=@test2
-# 	rightnexthop=%defaultroute
-# 	auto=add
-
-
-
-
-
-
-
-################  k8s Server ###################
-
-
-# cp /etc/ipsec.conf /etc/ipsec.conf_bk
-
-# cat > /etc/ipsec.conf <<EOF
-# version 2.0   
-
-# config setup
-# 	virtual_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12
-# 	protostack=netkey
-# 	interfaces=%defaultroute
-# 	nat_traversal=yes
-# 	oe=off
-
-
-# conn net-to-net
-# 	authby=secret
-# 	type=tunnel
-# 	left=%defaultroute
-# 	leftsubnet=172.16.0.0/12
-# 	leftid=@k8sServer
-# 	leftnexthop=%defaultroute
-# 	right=47.93.58.175
-# 	rightsubnet=172.16.0.0/12
-# 	rightid=@BJnode001
-# 	rightnexthop=%defaultroute
-# 	auto=add
-# 	ike=aes256-sha2,aes128-sha2,aes256-sha1,aes128-sha1,aes256-sha2;modp1024,aes128-sha1;modp1024
-#   	phase2alg=aes_gcm-null,aes128-sha1,aes256-sha1,aes256-sha2_512,aes128-sha2,aes256-sha2
-#   	sha2-truncbug=yes
-# EOF
-
-
-# localIP=172.22.1.13
-# cp /etc/ipsec.secrets /etc/ipsec.secrets_bk
-# cat > /etc/ipsec.secrets <<EOF
-# $localIP %any 0.0.0.0  : PSK "6gNFKwgbLV4BMKZL"
-# EOF
-
-# systemctl restart ipsec
-
-# ipsec verify
-
-# ipsec auto --up net-to-net
 
