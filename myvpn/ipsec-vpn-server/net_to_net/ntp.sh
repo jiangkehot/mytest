@@ -56,8 +56,9 @@ yum install openswan -y
 
 PUBLIC_IP=$(wget -t 3 -T 15 -qO- http://ipv4.icanhazip.com) && echo $PUBLIC_IP
 k8sServerIP='47.90.251.10'
-aclSubnet='172.17.0.0/16'
+serverSubnetPool='172.16.0.0/12'
 localIP=$(ip addr | grep eth0 | awk '/^[0-9]+: / {}; /inet.*global/ {print gensub(/(.*)\/(.*)/, "\\1", "g", $2)}') && echo $localIP
+localSubnetPool=$(ip r | grep "$localIP" | awk '{print $1}') && echo $localSubnetPool
 
 ############################ nodes #############3
 cp /etc/ipsec.conf /etc/ipsec.conf_bk
@@ -77,11 +78,11 @@ conn net-to-$HOSTNAME
 	authby=secret
 	type=tunnel
 	left=$k8sServerIP
-	leftsubnet=172.16.0.0/12
+	leftsubnet=$serverSubnetPool
 	leftid=@k8sServer
 	leftnexthop=%defaultroute
 	right=%defaultroute
-	rightsubnet=$aclSubnet
+	rightsubnet=$localSubnetPool
 	rightid=@$HOSTNAME
 	rightnexthop=%defaultroute
 	auto=add
