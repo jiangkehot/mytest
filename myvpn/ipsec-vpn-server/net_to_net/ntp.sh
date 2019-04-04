@@ -95,6 +95,9 @@ EOF
 systemctl start ipsec
 
 
+
+
+cat << EOF
 # ipsec --version
 # ipsec verify
 # ipsec whack --trafficstatus  # //查看链接状态
@@ -103,6 +106,7 @@ systemctl start ipsec
 # systemctl restart ipsec
 # ipsec auto --up net-to-net
 # ipsec auto --down net-to-net
+EOF
 
 
 
