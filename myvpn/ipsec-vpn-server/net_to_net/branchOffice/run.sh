@@ -60,8 +60,8 @@ conn net-to-$HOSTNAME
 	rightnexthop=%defaultroute
 	auto=start
 	ike=aes256-sha2,aes128-sha2,aes256-sha1,aes128-sha1,aes256-sha2;modp1024,aes128-sha1;modp1024
-  phase2alg=aes_gcm-null,aes128-sha1,aes256-sha1,aes256-sha2_512,aes128-sha2,aes256-sha2
-  sha2-truncbug=yes
+	phase2alg=aes_gcm-null,aes128-sha1,aes256-sha1,aes256-sha2_512,aes128-sha2,aes256-sha2
+	sha2-truncbug=yes
 EOF
 
 
