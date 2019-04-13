@@ -9,7 +9,8 @@
 # 判断是否安装了NFS客户端，如果没有，则自动安装
 rpm -q nfs-utils || sudo yum install -y nfs-utils
 
-x=xfu82
+read "输入fid：" fid
+x=${fid:-'xfu82'}
 
 # 判断是否存在目录/data，如果没有，自动创建，然后挂载data目录
 [ -d /data/ ] || mkdir /data && sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-$x.cn-beijing.nas.aliyuncs.com:/ /data
@@ -19,3 +20,11 @@ sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-$x.cn-beijing.nas.aliyuncs.c
 
 #判断是否存在用户jiangke，如果没有，自动创建，然后挂载jiangke的家目录
 [ `grep 'jiangke' /etc/passwd` ] || useradd -m -G root,wheel jiangke && sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-$x.cn-beijing.nas.aliyuncs.com:/home/jiangke /home/jiangke
+
+
+# 自动挂载
+
+cat > /etc/fstab <<EOF
+17b7148e89-$x.cn-beijing.nas.aliyuncs.com:/root /root nfs4 vers=4.0,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev,noresvport 0 0
+17b7148e89-$x.cn-beijing.nas.aliyuncs.com:/home/jiangke /home/jiangke nfs4 vers=4.0,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev,noresvport 0 0
+EOF
