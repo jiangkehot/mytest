@@ -4,7 +4,7 @@
 
 # curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/mount.sh | sh -x
 
-# vim /etc/rc.d/rc.local
+# vim /etc/rc.d/rc.local  # 自动挂载推荐使用/etc/fstab，而非/etc/rc.d/rc.local，如果使用/etc/rc.d/rc.local，需要添加执行权限，+x
 
 # 判断是否安装了NFS客户端，如果没有，则自动安装
 rpm -q nfs-utils || sudo yum install -y nfs-utils
