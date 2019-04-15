@@ -21,6 +21,8 @@ for i in "${scripts[@]}"; do
 	-P /etc/bash_completion.d
 done
 
-[ $(grep 'docker_machine_ps1' $HOME/.bashrc) ] || echo "PS1='[\u@\h \W\$(__docker_machine_ps1)]\\$ '" >> $HOME/.bashrc
+if ! grep 'docker_machine_ps1' $HOME/.bashrc; then
+	echo "PS1='[\u@\h \W\$(__docker_machine_ps1)]\\$ '" >> $HOME/.bashrc
+fi
 
 #最后从新打开一个bash，补全命令就生效了。
