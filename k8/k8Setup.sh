@@ -60,7 +60,7 @@ systemctl enable kubelet && systemctl start kubelet
 
 # Enabling shell autocompletion 脚本补全
 yum install bash-completion -y
-if ! grep 'kubectl completion bash' ~/.bashrc); then
+if ! grep 'kubectl completion bash' ~/.bashrc; then
   echo "source <(kubectl completion bash)" >> ~/.bashrc
 fi
 
