@@ -60,7 +60,9 @@ systemctl enable kubelet && systemctl start kubelet
 
 # Enabling shell autocompletion 脚本补全
 yum install bash-completion -y
-[ $(grep 'kubectl completion bash' ~/.bashrc) ] || echo "source <(kubectl completion bash)" >> ~/.bashrc
+if ! grep 'kubectl completion bash' ~/.bashrc); then
+  echo "source <(kubectl completion bash)" >> ~/.bashrc
+fi
 
 # 初始化kube集群
 # kubeadm init --apiserver-advertise-address=192.168.100.101 --pod-network-cidr=10.244.0.0/16
