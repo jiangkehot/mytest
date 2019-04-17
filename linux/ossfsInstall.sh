@@ -2,7 +2,9 @@
 
 set -e
 
-sudo yum localinstall -y /root/.bjbin/src/aliyun-ossfs/ossfs_1.80.5_centos7.0_x86_64.rpm
+ossfsv='ossfs_1.80.5_centos7.0_x86_64.rpm'
+wget http://gosspublic.alicdn.com/ossfs/$ossfsv
+sudo yum localinstall -y $ossfsv
 
 arr_bucket=(djangotest jiangkehot univerdream-aliyun-bill univerdream-bj-registry univerdream-etc)
 thepwd=/data/ossfs/
