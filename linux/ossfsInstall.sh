@@ -16,7 +16,7 @@ for dir in ${arr_bucket[@]} ;do
 done
 
 # config
-source /root/.ssh/AccessKey
+source /data/root/.ssh/AccessKey
 touch /etc/passwd-ossfs
 for dir in ${arr_bucket[@]} ;do
     if ! grep "$dir" /etc/passwd-ossfs; then
