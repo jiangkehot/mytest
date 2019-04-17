@@ -24,7 +24,7 @@ sudo mount -t nfs -o vers=4.0,noresvport 17b7148e89-$x.cn-beijing.nas.aliyuncs.c
 
 # 自动挂载
 
-cat > /etc/fstab <<EOF
+cat >> /etc/fstab <<EOF
 17b7148e89-$x.cn-beijing.nas.aliyuncs.com:/ /data nfs4 vers=4.0,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev,noresvport 0 0
 17b7148e89-$x.cn-beijing.nas.aliyuncs.com:/root /root nfs4 vers=4.0,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev,noresvport 0 0
 17b7148e89-$x.cn-beijing.nas.aliyuncs.com:/home/jiangke /home/jiangke nfs4 vers=4.0,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev,noresvport 0 0
