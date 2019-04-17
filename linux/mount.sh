@@ -10,7 +10,7 @@
 rpm -q nfs-utils || sudo yum install -y nfs-utils
 
 # 激活环境变量
-source my.env 
+source ./my.env 
 
 nfsid=${mynfsid:-'17b7148e89'}
 vswid=${myvswid:-'xfu82'}
