@@ -24,4 +24,4 @@ function cdl(){
 	fi  	
 }
 
-cdl "$dir"
+cdl "$@"
