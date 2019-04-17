@@ -34,8 +34,6 @@ mountPoint=([/]="/data" [/root]="/root" [/home/jiangke]="/home/jiangke")
 
 for name in $(echo ${!mountPoint[*]}); do
   if ! grep "$name ${mountPoint[$name]}" /etc/fstab > /dev/null; then
-    cat >> /etc/fstab <<EOF
-    $nfsid-$vswid.cn-beijing.nas.aliyuncs.com:$name ${mountPoint[$name]} nfs4 vers=4.0,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev,noresvport 0 0
-    EOF
+    echo "$nfsid-$vswid.cn-beijing.nas.aliyuncs.com:$name ${mountPoint[$name]} nfs4 vers=4.0,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev,noresvport 0 0" >> /etc/fstab
   fi
 done
