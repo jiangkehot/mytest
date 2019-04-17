@@ -9,7 +9,7 @@
 # 判断是否安装了NFS客户端，如果没有，则自动安装
 rpm -q nfs-utils || sudo yum install -y nfs-utils
 
-read "输入fid：" fid
+read -p "输入fid：" fid
 x=${fid:-'xfu82'}
 
 # 判断是否存在目录/data，如果没有，自动创建，然后挂载data目录
