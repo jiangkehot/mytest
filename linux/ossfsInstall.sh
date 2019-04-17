@@ -9,11 +9,6 @@ sudo yum localinstall -y $ossfsv
 arr_bucket=(djangotest jiangkehot univerdream-aliyun-bill univerdream-bj-registry univerdream-etc)
 thepwd=/data/ossfs/
 
-# make directory
-
-for dir in ${arr_bucket[@]} ;do 
-    [ -d ${thepwd}${dir} ] || mkdir ${thepwd}${dir}
-done
 
 # config
 source /data/root/.ssh/AccessKey
@@ -23,11 +18,12 @@ for dir in ${arr_bucket[@]} ;do
     	echo $dir:$AccessKeyID:$AccessKeySecret >> /etc/passwd-ossfs
     fi
 done
-
 chmod 640 /etc/passwd-ossfs
 
-# mount
+
+# make directory && mount
 for dir in ${arr_bucket[@]} ;do
+    [ -d ${thepwd}${dir} ] || mkdir ${thepwd}${dir}
     ossfs $dir ${thepwd}${dir} -ourl=http://oss-cn-beijing-internal.aliyuncs.com
 done
 
