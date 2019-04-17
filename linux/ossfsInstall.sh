@@ -35,7 +35,7 @@ done
 chmod +x /etc/rc.d/rc.local
 for dir in ${arr_bucket[@]} ;do
   if ! grep '$dir' /etc/rc.d/rc.local; then
-      echo 'ossfs $dir ${thepwd}${dir} -ourl=http://oss-cn-beijing-internal.aliyuncs.com' >> /etc/rc.local
+      echo "ossfs $dir ${thepwd}${dir} -ourl=http://oss-cn-beijing-internal.aliyuncs.com" >> /etc/rc.local
   fi
 done
 
