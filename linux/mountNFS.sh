@@ -1,5 +1,5 @@
 #! /bin/bash
-# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/mount.sh | sh -x
+# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/mountNFS.sh | sh -x
 
 # 判断是否安装了NFS客户端，如果没有，则自动安装
 rpm -q nfs-utils || sudo yum install -y nfs-utils
