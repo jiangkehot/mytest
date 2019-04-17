@@ -2,6 +2,7 @@
 
 set -e
 
+# Install Ossfs
 ossfsv='ossfs_1.80.5_centos7.0_x86_64.rpm'
 wget http://gosspublic.alicdn.com/ossfs/$ossfsv
 sudo yum localinstall -y $ossfsv
@@ -36,7 +37,7 @@ for dir in ${arr_bucket[@]} ;do
   fi
 done
 
-## umount()
+## umount
 #umount_ossfs()
 #{
 #  # root user: umount /tmp/ossfs 
