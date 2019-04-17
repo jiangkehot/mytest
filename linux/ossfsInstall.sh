@@ -33,6 +33,7 @@ done
 
 # 开机自动挂载
 chmod +x /etc/rc.d/rc.local
+echo 'sleep 5' >> /etc/rc.local
 for dir in ${arr_bucket[@]} ;do
   if ! grep '$dir' /etc/rc.d/rc.local; then
       echo "ossfs $dir ${thepwd}${dir} -ourl=http://oss-cn-beijing-internal.aliyuncs.com" >> /etc/rc.local
