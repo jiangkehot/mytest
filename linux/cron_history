@@ -3,12 +3,13 @@
 # 将shell的历史命令保存至持久化文件root/bash_history
 declare -A arr_users
 arr_users=([root]="/root" [home/jiangke]="/data/home/jiangke")
-bak_path=/data/bak
 
 for user in $(echo ${!arr_users[*]}) ;do
-  if [[ -s ${arr_users[$user]}/.bash_history ]];then
-    cat ${arr_users[$user]}/.bash_history >> $bak_path/$user/history/bash_history_$user && cat /dev/null > ${arr_users[$user]}/.bash_history && echo "$user `date +'%F %T'` -->  OK" >> $bak_path/$user/history/history_$user.log
+  bak_path=/data/bak/$user/history
+  bash_history_file=${arr_users[$user]}/.bash_history
+  if [[ -s $bash_history_file ]];then
+    cat $bash_history_file >> $bak_path/bash_history_$user && cat /dev/null > $bash_history_file && echo "$user `date +'%F %T'` -->  OK" >> $bak_path/history_$user.log
   else
-    echo "$user `date +'%F %T'` --> ${arr_users[$user]}/.bash_history 文件为空" >> $bak_path/$user/history/history_$user.log
+    echo "$user `date +'%F %T'` --> ${arr_users[$user]}/.bash_history 文件为空" >> $bak_path/history_$user.log
   fi
 done
