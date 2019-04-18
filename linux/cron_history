@@ -7,8 +7,8 @@ bak_path=/data/bak
 
 for user in $(echo ${!arr_users[*]}) ;do
   if [[ -s ${arr_users[$user]}/.bash_history ]];then
-    cat ${arr_users[$user]}/.bash_history >> $bak_path/$user/bash_history && cat /dev/null > ${arr_users[$user]}/.bash_history && echo "$user `date +'%F %T'` -->  OK" >> $bak_path/$user/history_$user.log
+    cat ${arr_users[$user]}/.bash_history >> $bak_path/$user/history/bash_history_$user && cat /dev/null > ${arr_users[$user]}/.bash_history && echo "$user `date +'%F %T'` -->  OK" >> $bak_path/$user/history/history_$user.log
   else
-    echo "$user `date +'%F %T'` --> ${arr_users[$user]}/.bash_history 文件为空" >> $bak_path/$user/history_$user.log
+    echo "$user `date +'%F %T'` --> ${arr_users[$user]}/.bash_history 文件为空" >> $bak_path/$user/history/history_$user.log
   fi
 done
