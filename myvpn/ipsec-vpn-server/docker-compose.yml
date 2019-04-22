@@ -3,6 +3,7 @@ services:
 
   ipsec-vpn-server:
     image: hwdsl2/ipsec-vpn-server
+    # network_mode: host
     ports:
       - "4500:4500/udp"
       - "500:500/udp"
