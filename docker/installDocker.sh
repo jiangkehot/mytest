@@ -23,6 +23,7 @@ set -e
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 #添加docker的阿里云的源
 sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+# sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 #更新并安装相应版本
 sudo yum makecache fast
 [ -z $1 ] && sudo yum -y install docker-ce || sudo yum -y install docker-ce-$1
