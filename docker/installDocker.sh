@@ -19,10 +19,10 @@ else
     # docker加速 aliyun加速器
     sudo mkdir -p /etc/docker
     sudo tee /etc/docker/daemon.json <<-'EOF'
-        {
-          "registry-mirrors": ["https://0po41ixf.mirror.aliyuncs.com"]
-        }
-    EOF
+{
+  "registry-mirrors": ["https://0po41ixf.mirror.aliyuncs.com"]
+}
+EOF
     #sudo systemctl daemon-reload && sudo systemctl restart docker
 fi
 
