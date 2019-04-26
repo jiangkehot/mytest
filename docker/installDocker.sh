@@ -12,19 +12,19 @@ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 
 # 添加docker源
 if [ -z $1 ]; then
-    sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+	sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 else
-    sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-    
-    # docker加速 aliyun加速器
-    sudo mkdir -p /etc/docker
-    #在<<符号后面加一个长划线：cat <<-EOF【注意：<<后面直接跟-否则如果有空格，也会报错~】。这样就可以使用tab来缩进第十行中用来结束输入的终止符(注:  使用空格进行缩进将同样方式报错)
-    sudo tee /etc/docker/daemon.json <<-'EOF'
-    {
-      "registry-mirrors": ["https://0po41ixf.mirror.aliyuncs.com"]
-    }
-    EOF
-    #sudo systemctl daemon-reload && sudo systemctl restart docker
+	sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+
+	# docker加速 aliyun加速器
+	sudo mkdir -p /etc/docker
+	#在<<符号后面加一个长划线：cat <<-EOF【注意：<<后面直接跟-否则如果有空格，也会报错~】。这样就可以使用tab来缩进第十行中用来结束输入的终止符(注:  使用空格进行缩进将同样方式报错)
+	sudo tee /etc/docker/daemon.json <<-'EOF'
+	{
+	  "registry-mirrors": ["https://0po41ixf.mirror.aliyuncs.com"]
+	}
+	EOF
+	#sudo systemctl daemon-reload && sudo systemctl restart docker
 fi
 
 #更新并安装相应版本
