@@ -7,9 +7,10 @@ set -e
 
 ####### 服务器端 #######
 
-#设置root密码
-#sudo -i
-#passwd 
+# 设置root密码
+# sudo -i
+# passwd
+# echo 'root:ssh123456' |chpasswd
 
 #PermitRootLogin 
 	#yes:允许root登录; 
