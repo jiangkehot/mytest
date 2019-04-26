@@ -19,10 +19,10 @@ else
     # docker加速 aliyun加速器
     sudo mkdir -p /etc/docker
     sudo tee /etc/docker/daemon.json <<-'EOF'
-{
-  "registry-mirrors": ["https://0po41ixf.mirror.aliyuncs.com"]
-}
-EOF
+        {
+          "registry-mirrors": ["https://0po41ixf.mirror.aliyuncs.com"]
+        }
+    EOF #在<<符号后面加一个长划线：cat <<-EOF【注意：<<后面直接跟-否则如果有空格，也会报错~】。这样就可以使用tab来缩进第十行中用来结束输入的终止符(注:  使用空格进行缩进将同样方式报错)
     #sudo systemctl daemon-reload && sudo systemctl restart docker
 fi
 
