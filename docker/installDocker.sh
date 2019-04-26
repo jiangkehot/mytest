@@ -11,7 +11,7 @@ set -e
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 
 # 添加docker源
-if [ -z $1 ]; then
+if [ $1 != 'aliyun' ]; then
 	sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 else
 	sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
