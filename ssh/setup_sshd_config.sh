@@ -38,7 +38,7 @@ set -e
 
 #改回root仅支持秘钥登录设置
 
-#sed -i 's/PermitRootLogin\ yes/PermitRootLogin\ prohibit-password/g' /etc/ssh/sshd_config
+sed -i 's/PermitRootLogin\ yes/PermitRootLogin\ prohibit-password/g' /etc/ssh/sshd_config
 sed -i 's/PasswordAuthentication\ yes/PasswordAuthentication\ no/g' /etc/ssh/sshd_config
 systemctl restart sshd.service
 
