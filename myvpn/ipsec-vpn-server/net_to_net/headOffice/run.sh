@@ -37,8 +37,10 @@ fi
 if ip link add dummy0 type dummy 2>&1 | grep -q "not permitted"; then
 cat 1>&2 <<'EOF'
 Error: This Docker image must be run in privileged mode.
+
 For detailed instructions, please visit:
 https://github.com/hwdsl2/docker-ipsec-vpn-server
+
 EOF
   exit 1
 fi
@@ -152,11 +154,13 @@ DNS_SRVS="\"$DNS_SRV1 $DNS_SRV2\""
 # Create IPsec (Libreswan) config
 cat > /etc/ipsec.conf <<EOF
 version 2.0
+
 config setup
   virtual-private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12,%v4:!$L2TP_NET,%v4:!$XAUTH_NET
   protostack=netkey
   interfaces=%defaultroute
   uniqueids=no
+
 conn shared
   left=%defaultroute
   leftid=$PUBLIC_IP
@@ -172,6 +176,7 @@ conn shared
   ike=aes256-sha2,aes128-sha2,aes256-sha1,aes128-sha1,aes256-sha2;modp1024,aes128-sha1;modp1024
   phase2alg=aes_gcm-null,aes128-sha1,aes256-sha1,aes256-sha2_512,aes128-sha2,aes256-sha2
   sha2-truncbug=yes
+
 conn l2tp-psk
   auto=add
   leftprotoport=17/1701
@@ -179,6 +184,7 @@ conn l2tp-psk
   type=transport
   phase2=esp
   also=shared
+
 conn xauth-psk
   auto=add
   leftsubnet=0.0.0.0/0
@@ -209,6 +215,7 @@ EOF
 cat > /etc/xl2tpd/xl2tpd.conf <<EOF
 [global]
 port = 1701
+
 [lns default]
 ip range = $L2TP_POOL
 local ip = $L2TP_LOCAL
@@ -319,9 +326,13 @@ iptables -t nat -I POSTROUTING -s "$L2TP_NET" -o eth+ -j MASQUERADE
 chmod 600 /etc/ipsec.secrets /etc/ppp/chap-secrets /etc/ipsec.d/passwd
 
 cat <<EOF
+
 ================================================
+
 IPsec VPN server is now ready for use!
+
 Connect to your new VPN with these details:
+
 Server IP: $PUBLIC_IP
 IPsec PSK: $VPN_IPSEC_PSK
 Username: $VPN_USER
@@ -333,6 +344,7 @@ if [ -n "$VPN_ADDL_USERS" ] && [ -n "$VPN_ADDL_PASSWORDS" ]; then
   addl_user=$(printf '%s' "$VPN_ADDL_USERS" | cut -d ' ' -f 1)
   addl_password=$(printf '%s' "$VPN_ADDL_PASSWORDS" | cut -d ' ' -f 1)
 cat <<'EOF'
+
 Additional VPN users (username | password):
 EOF
   while [ -n "$addl_user" ] && [ -n "$addl_password" ]; do
@@ -346,10 +358,14 @@ EOF
 fi
 
 cat <<'EOF'
+
 Write these down. You'll need them to connect!
+
 Important notes:   https://git.io/vpnnotes2
 Setup VPN clients: https://git.io/vpnclients
+
 ================================================
+
 EOF
 
 # Load IPsec kernel module
