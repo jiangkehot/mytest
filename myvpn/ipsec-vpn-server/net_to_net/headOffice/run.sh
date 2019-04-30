@@ -160,7 +160,9 @@ config setup
   protostack=netkey
   interfaces=%defaultroute
   uniqueids=no
+EOF
 
+cat > /etc/ipsec.d/shared.conf <<EOF
 conn shared
   left=%defaultroute
   leftid=$PUBLIC_IP
@@ -176,7 +178,9 @@ conn shared
   ike=aes256-sha2,aes128-sha2,aes256-sha1,aes128-sha1,aes256-sha2;modp1024,aes128-sha1;modp1024
   phase2alg=aes_gcm-null,aes128-sha1,aes256-sha1,aes256-sha2_512,aes128-sha2,aes256-sha2
   sha2-truncbug=yes
+EOF
 
+cat > /etc/ipsec.d/l2tp-psk.conf <<EOF
 conn l2tp-psk
   auto=add
   leftprotoport=17/1701
@@ -184,7 +188,9 @@ conn l2tp-psk
   type=transport
   phase2=esp
   also=shared
+EOF
 
+cat > /etc/ipsec.d/xauth-psk.conf <<EOF
 conn xauth-psk
   auto=add
   leftsubnet=0.0.0.0/0
@@ -204,6 +210,7 @@ EOF
 
 if uname -r | grep -qi 'coreos'; then
   sed -i '/phase2alg/s/,aes256-sha2_512//' /etc/ipsec.conf
+  sed -i '/phase2alg/s/,aes256-sha2_512//' /etc/ipsec.d/*.conf
 fi
 
 # Specify IPsec PSK
