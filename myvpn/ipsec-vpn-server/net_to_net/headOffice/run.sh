@@ -160,6 +160,7 @@ config setup
   protostack=netkey
   interfaces=%defaultroute
   uniqueids=no
+  nat_traversal=yes
 # It is best to add your IPsec connections as separate files in /etc/ipsec.d/
 include /etc/ipsec.d/*.conf
 EOF
