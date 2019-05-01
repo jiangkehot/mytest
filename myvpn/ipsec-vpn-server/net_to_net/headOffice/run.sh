@@ -156,10 +156,12 @@ cat > /etc/ipsec.conf <<EOF
 version 2.0
 
 config setup
-  virtual-private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12,%v4:!$L2TP_NET,%v4:!$XAUTH_NET
+  virtual-private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12,%v4:!$L2TP_NET,%v4:!$XAUTH_NET,%v4:25.0.0.0/8,%v4:100.64.0.0/10,%v6:fd00::/8,%v6:fe80::/10
   protostack=netkey
   interfaces=%defaultroute
   uniqueids=no
+# It is best to add your IPsec connections as separate files in /etc/ipsec.d/
+include /etc/ipsec.d/*.conf
 EOF
 
 cat > /etc/ipsec.d/shared.conf <<EOF
