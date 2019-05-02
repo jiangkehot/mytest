@@ -63,13 +63,26 @@ sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
 yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
-systemctl enable --now kubelet && systemctl start kubelet
+systemctl enable --now kubelet #&& systemctl start kubelet
+
+cat <<EOF >  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl --system
 
 # ke
-echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
+# echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
+
+# Make sure that the br_netfilter module is loaded before this step. This can be done by running lsmod | grep br_netfilter. To load it explicitly call 
+# lsmod | grep br_netfilter
+modprobe br_netfilter
+
+systemctl daemon-reload
+systemctl restart kubelet
 
 # Enabling shell autocompletion 脚本补全
 yum install bash-completion -y
-echo "source <(kubectl completion bash)" >> ~/.bashrc
+[ grep 'kubectl completion bash' ~/.bashrc ] || echo "source <(kubectl completion bash)" >> ~/.bashrc
 
-kubeadm init --pod-network-cidr=10.244.0.0/16
+# kubeadm init --pod-network-cidr=10.244.0.0/16
