@@ -420,7 +420,7 @@ exec /usr/sbin/xl2tpd -D -c /etc/xl2tpd/xl2tpd.conf
 ################================================================###################
 
 
-cat << EOF
+cat <<'EOF'
 ================================================
 systemctl restart ipsec
 ipsec --version
