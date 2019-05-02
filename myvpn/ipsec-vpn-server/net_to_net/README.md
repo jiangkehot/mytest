@@ -3,6 +3,8 @@
 ```
 sudo modprobe af_key
 
+cd /usr/local/etc/ && curl -O https://raw.githubusercontent.com/jiangkehot/mytest/master/myvpn/ipsec-vpn-server/vpn.env
+
 docker run \
     --name ipsec-vpn-server \
     --env-file ./vpn.env \
