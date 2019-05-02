@@ -15,7 +15,8 @@ docker run \
     -d --privileged \
     hwdsl2/ipsec-vpn-server  
 
-docker exec ipsec-vpn-server wget https://raw.githubusercontent.com/jiangkehot/mytest/master/myvpn/ipsec-vpn-server/net_to_net/branchOffice/run.sh
+# -O filename 可以强制覆盖，不加则下载后重命名为run.sh.1 balabalabala...
+docker exec ipsec-vpn-server wget https://raw.githubusercontent.com/jiangkehot/mytest/master/myvpn/ipsec-vpn-server/net_to_net/branchOffice/run.sh -O run.sh 
 docker restart ipsec-vpn-server
 docker logs ipsec-vpn-server
 ```
