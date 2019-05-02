@@ -434,7 +434,7 @@ EOF
 
 echo '###############配置服务器部分###########'
 
-echo "cat > /etc/ipsec.d/net-to-$HOSTNAME.conf <<EOF"
+echo "cat > /usr/local/etc/ipsec.d/net-to-$HOSTNAME.conf <<EOF"
 sed -e s/left=$k8sServerIP/left=\%defaultroute/ -e s/right=\%defaultroute/right=$PUBLIC_IP/ /etc/ipsec.d/net-to-$HOSTNAME.conf
 echo 'EOF'
 
