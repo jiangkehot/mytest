@@ -171,7 +171,7 @@ EOF
 # docker exec ipsec-vpn-server wget https://raw.githubusercontent.com/jiangkehot/mytest/master/myvpn/ipsec-vpn-server/net_to_net/headOffice/run.sh
 # docker exec ipsec-vpn-server chmod +x run.sh
 # docker restart ipsec-vpn-server
-# docker exec ipsec-vpn-server /etc/ipsec.conf
+# docker exec ipsec-vpn-server cat /etc/ipsec.conf
 # docker exec ipsec-vpn-server ipsec status
 
 
