@@ -386,7 +386,7 @@ fi
 
 
 
-cat > /usr/local/etc/ipsec.d/net-to-$HOSTNAME.conf <<-'EOF'
+cat > /etc/ipsec.d/net-to-$HOSTNAME.conf <<-'EOF'
 conn net-to-$HOSTNAME
 	authby=secret
 	type=tunnel
@@ -435,7 +435,7 @@ EOF
 echo '###############配置服务器部分###########'
 
 echo "cat > /etc/ipsec.d/net-to-$HOSTNAME.conf <<EOF"
-cat /etc/ipsec.d/net-to-$HOSTNAME.conf
+sed -e s/left=$k8sServerIP/left=\%defaultroute/ -e s/right=\%defaultroute/right=$PUBLIC_IP/ /etc/ipsec.d/net-to-$HOSTNAME.conf
 echo 'EOF'
 
 
