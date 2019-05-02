@@ -401,20 +401,6 @@ conn net-to-$HOSTNAME
 EOF
 
 
-################================================================###################
-
-
-
-# Load IPsec kernel module
-modprobe af_key
-
-# Start services
-mkdir -p /run/pluto /var/run/pluto /var/run/xl2tpd
-rm -f /run/pluto/pluto.pid /var/run/pluto/pluto.pid /var/run/xl2tpd.pid
-
-/usr/local/sbin/ipsec start
-exec /usr/sbin/xl2tpd -D -c /etc/xl2tpd/xl2tpd.conf
-
 
 
 ################================================================###################
@@ -447,3 +433,20 @@ echo '###############配置服务器部分###########'
 echo "cat > /etc/ipsec.d/net-to-$HOSTNAME.conf <<EOF"
 cat /etc/ipsec.d/net-to-$HOSTNAME.conf
 echo 'EOF'
+
+
+################================================================###################
+
+
+
+# Load IPsec kernel module
+modprobe af_key
+
+# Start services
+mkdir -p /run/pluto /var/run/pluto /var/run/xl2tpd
+rm -f /run/pluto/pluto.pid /var/run/pluto/pluto.pid /var/run/xl2tpd.pid
+
+/usr/local/sbin/ipsec start
+exec /usr/sbin/xl2tpd -D -c /etc/xl2tpd/xl2tpd.conf
+
+
