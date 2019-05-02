@@ -378,7 +378,7 @@ PUBLIC_IP=$(wget -t 3 -T 15 -qO- http://ipv4.icanhazip.com) && echo $PUBLIC_IP
 k8sServerIP='47.90.251.10'
 serverSubnetPool='172.16.0.0/12'
 localIP=$(ip addr | grep eth0 | awk '/^[0-9]+: / {}; /inet.*global/ {print gensub(/(.*)\/(.*)/, "\\1", "g", $2)}') && echo $localIP
-if [ $PUBLIC_IP == $localIP ];then
+if [ $PUBLIC_IP = $localIP ];then
 	localSubnetPool=$localIP/32
 else
 	localSubnetPool=$(ip r | grep "$localIP" | awk '{print $1}') && echo $localSubnetPool
