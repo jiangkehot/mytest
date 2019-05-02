@@ -386,7 +386,7 @@ fi
 
 
 
-cat > /etc/ipsec.d/net-to-$HOSTNAME.conf <<EOF
+cat > /usr/local/etc/ipsec.d/net-to-$HOSTNAME.conf <<-'EOF'
 conn net-to-$HOSTNAME
 	authby=secret
 	type=tunnel
