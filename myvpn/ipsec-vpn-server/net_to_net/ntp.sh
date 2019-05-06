@@ -93,9 +93,9 @@ sudo modprobe af_key
 # 查看内核是否被加载
 lsmod | grep -i af_key
 # 开机加载内核模块
-cat >> /etc/modules-load.d/virtio-net.conf << EEOOFF
-# Load virtio-net.ko at boot
-virtio-net
+cat > /etc/modules-load.d/af_key.conf << EEOOFF
+# Load af_key at boot
+af_key
 EEOOFF
 ================================================
 EOF
