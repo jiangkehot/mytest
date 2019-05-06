@@ -90,6 +90,8 @@ ipsec auto --down net-to-$HOSTNAME
 # 关于内核模块 modprobe af_key 
 # 加载内核模块
 sudo modprobe af_key
+# 查看内核是否被加载
+lsmod | grep -i af_key
 # 开机加载内核模块
 cat >> /etc/modules-load.d/virtio-net.conf << EEOOFF
 # Load virtio-net.ko at boot
