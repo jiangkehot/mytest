@@ -388,20 +388,20 @@ fi
 
 cat > /etc/ipsec.d/net-to-$HOSTNAME.conf <<EOF
 conn net-to-$HOSTNAME
-	authby=secret
-	type=tunnel
-	left=$k8sServerIP
-	leftsubnet=$serverSubnetPool
-	leftid=@k8sServer
-	leftnexthop=%defaultroute
-	right=%defaultroute
-	rightsubnet=$localSubnetPool
-	rightid=@$HOSTNAME
-	rightnexthop=%defaultroute
-	auto=route
-	ike=aes256-sha2,aes128-sha2,aes256-sha1,aes128-sha1,aes256-sha2;modp1024,aes128-sha1;modp1024
-	phase2alg=aes_gcm-null,aes128-sha1,aes256-sha1,aes256-sha2_512,aes128-sha2,aes256-sha2
-	sha2-truncbug=yes
+    authby=secret
+    type=tunnel
+    left=$k8sServerIP
+    leftsubnet=$serverSubnetPool
+    leftid=@k8sServer
+    leftnexthop=%defaultroute
+    right=%defaultroute
+    rightsubnet=$localSubnetPool
+    rightid=@$HOSTNAME
+    rightnexthop=%defaultroute
+    auto=route
+    ike=aes256-sha2,aes128-sha2,aes256-sha1,aes128-sha1,aes256-sha2;modp1024,aes128-sha1;modp1024
+    phase2alg=aes_gcm-null,aes128-sha1,aes256-sha1,aes256-sha2_512,aes128-sha2,aes256-sha2
+    sha2-truncbug=yes
 EOF
 
 
