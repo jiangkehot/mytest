@@ -2,6 +2,11 @@
 
 ```
 sudo modprobe af_key
+# 开机加载内核模块 af_key
+cat > /etc/modules-load.d/af_key.conf << EOF 
+# Load af_key at boot af_key 
+af_key
+EOF
 
 cd /usr/local/etc/ && curl -O https://raw.githubusercontent.com/jiangkehot/mytest/master/myvpn/ipsec-vpn-server/vpn.env
 
