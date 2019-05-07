@@ -22,5 +22,10 @@ HISTFILESIZE=5000
 export HISTTIMEFORMAT='%F %T '
 
 # 判断是否存在cdl命令
-#[ -f `which cdl` ] && source `which cdl` >> /dev/null
-[ `which cdl` ] || curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/cdl.sh -o /usr/local/sbin/cdl && chmod +x /usr/local/sbin/cdl && source `which cdl` >> /dev/null
+# [ -f `which cdl` ] && source `which cdl` >> /dev/null
+# [ `which cdl` ] || curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/cdl.sh -o /usr/local/sbin/cdl && chmod +x /usr/local/sbin/cdl && source `which cdl` >> /dev/null
+# 以下写法虽然无法简写在一行，但这才是正确且符合逻辑的。
+if which cdl; then
+	curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/cdl.sh -o /usr/local/sbin/cdl && chmod +x /usr/local/sbin/cdl
+fi
+source `which cdl` >> /dev/null
