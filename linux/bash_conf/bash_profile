@@ -25,7 +25,7 @@ export HISTTIMEFORMAT='%F %T '
 # [ -f `which cdl` ] && source `which cdl` >> /dev/null
 # [ `which cdl` ] || curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/cdl.sh -o /usr/local/sbin/cdl && chmod +x /usr/local/sbin/cdl && source `which cdl` >> /dev/null
 # 以下写法虽然无法简写在一行，但这才是正确且符合逻辑的。
-if which cdl > /dev/null; then
+if ! which cdl > /dev/null; then
 	curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/cdl.sh -o /usr/local/sbin/cdl && chmod +x /usr/local/sbin/cdl
 fi
 source `which cdl` > /dev/null
