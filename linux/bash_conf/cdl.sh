@@ -5,9 +5,9 @@
 function cdl(){
 
 	if [ -z "$1" ]; then
-	  	dir=$HOME
+	  	dir="$HOME"
   	elif echo "$1" | grep -q '^/'; then  # bug: grep不能操作目录，这里$1是目录
-  		dir=$1
+  		dir="$1"
 	else
 		dir="$PWD/$1"
 	fi
@@ -22,4 +22,4 @@ function cdl(){
 	fi  	
 }
 
-cdl "$@"
+cdl "$*"
