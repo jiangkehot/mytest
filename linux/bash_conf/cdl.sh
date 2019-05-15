@@ -1,6 +1,7 @@
 #! /bin/bash
 # 自建shell命令:cdl = cd && ll  (打开目录，并列出所有内容)
 # curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/cdl.sh -o ~/.shellib/cdl
+# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/linux/bash_conf/cdl.sh -o ~/.cdl
 
 function cdl(){
 
