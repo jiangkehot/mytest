@@ -8,7 +8,7 @@ set -e
 if ! ossfs --version > /dev/null; then
     rmp_ossfs='ossfs_1.80.5_centos7.0_x86_64.rpm'
     [ -a ~/.bjadmin/src/aliyun-ossfs/$rmp_ossfs ] || wget -P ~/.bjadmin/src/aliyun-ossfs/ "http://gosspublic.alicdn.com/ossfs/$rmp_ossfs"
-    sudo yum localinstall -y --installroot="$HOME/.bjadmin/bin" ~/.bjadmin/src/aliyun-ossfs/$rmp_ossfs
+    sudo yum localinstall -y ~/.bjadmin/src/aliyun-ossfs/$rmp_ossfs
 fi
 
 arr_bucket=(djangotest jiangkehot univerdream-aliyun-bill univerdream-bj-registry univerdream-etc)
