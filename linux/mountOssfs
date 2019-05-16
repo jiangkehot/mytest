@@ -2,17 +2,20 @@
 
 set -e
 
+[ -a ~/.bjadmin ] || su -
+
 # Install Ossfs
-ossfsv='ossfs_1.80.5_centos7.0_x86_64.rpm'
-wget http://gosspublic.alicdn.com/ossfs/$ossfsv
-sudo yum localinstall -y $ossfsv
+if ! ossfs --version > /dev/null; then
+    rmp_ossfs='ossfs_1.80.5_centos7.0_x86_64.rpm'
+    [ -a ~/.bjadmin/src/aliyun-ossfs/$rmp_ossfs ] || wget -P ~/.bjadmin/src/aliyun-ossfs/ "http://gosspublic.alicdn.com/ossfs/$rmp_ossfs"
+    sudo yum localinstall -y --installroot=~/.bjadmin/bin ~/.bjadmin/src/aliyun-ossfs/$rmp_ossfs
+fi
 
 arr_bucket=(djangotest jiangkehot univerdream-aliyun-bill univerdream-bj-registry univerdream-etc)
-thepwd=/data/ossfs/
-
+ossfs_point=/data/ossfs
 
 # config
-source /data/root/.ssh/AccessKey
+[ -f ~/.ssh/AccessKey ] && source ~/.ssh/AccessKey
 touch /etc/passwd-ossfs
 for dir in ${arr_bucket[@]} ;do
     if ! grep "$dir" /etc/passwd-ossfs; then
@@ -24,8 +27,8 @@ chmod 640 /etc/passwd-ossfs
 
 # make directory && mount
 for dir in ${arr_bucket[@]} ;do
-    [ -d ${thepwd}${dir} ] || mkdir ${thepwd}${dir}
-    ossfs $dir ${thepwd}${dir} -ourl=http://oss-cn-beijing-internal.aliyuncs.com
+    [ -d ${ossfs_point}/${dir} ] || mkdir ${ossfs_point}/${dir}
+    ossfs $dir ${ossfs_point}/${dir} -ourl=http://oss-cn-beijing-internal.aliyuncs.com
 done
 
 # 开机自动挂载
@@ -33,7 +36,7 @@ chmod +x /etc/rc.d/rc.local
 echo 'sleep 5' >> /etc/rc.local
 for dir in ${arr_bucket[@]} ;do
   if ! grep '$dir' /etc/rc.d/rc.local; then
-      echo "ossfs $dir ${thepwd}${dir} -ourl=http://oss-cn-beijing-internal.aliyuncs.com" >> /etc/rc.local
+      echo "ossfs $dir ${ossfs_point}/${dir} -ourl=http://oss-cn-beijing-internal.aliyuncs.com" >> /etc/rc.local
   fi
 done
 
@@ -43,7 +46,7 @@ done
 #  # root user: umount /tmp/ossfs 
 #  # non-root user: fusermount -u /tmp/ossfs 
 #  for dir in ${arr_bucket[@]} ;do 
-#      umount ${thepwd}${dir}/
+#      umount ${ossfs_point}/${dir}/
 #  done
 #}
 #umount_ossfs
