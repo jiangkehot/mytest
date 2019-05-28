@@ -2,42 +2,31 @@
 
 set -e
 
-# [ -a ~/.bjadmin ] || su -
-
 # Install Ossfs
 if ! /usr/bin/command ossfs; then
     rmp_ossfs='ossfs_1.80.5_centos7.0_x86_64.rpm'
     sudo yum localinstall -y ~/.local/src/aliyun-ossfs/$rmp_ossfs || sudo yum localinstall -y "http://gosspublic.alicdn.com/ossfs/$rmp_ossfs"
 fi
 
-# config
-exiterr()  { echo "Error: $1" >&2; exit 1; }
-# mount脚本依赖/root/.ssh/AccessKey
-if [ ! -f /root/.ssh/AccessKey ]; then
-	exiterr "/root/.ssh/AccessKey不存在，此脚本依赖文件/root/.ssh/AccessKey"
-fi
-source ~/.ssh/AccessKey
-touch /etc/passwd-ossfs
-for dir in ${arr_bucket[@]} ;do
-    if ! grep -q "$dir" /etc/passwd-ossfs; then
-    	echo $dir:$AccessKeyID:$AccessKeySecret >> /etc/passwd-ossfs
+# make bucket_point && 开机自动挂载
+[ -f /root/.ssh/AccessKey ] || source ~/.ssh/AccessKey # mount脚本依赖/root/.ssh/AccessKey
+arr_bucket=(djangotest jiangkehot univerdream-aliyun-bill univerdream-bj-registry)
+ossfs_mount_point=/data/ossfs
+ossfs_passwd_file=/etc/passwd-ossfs
+ossfs_script_file=/etc/init.d/ossfs
+
+touch $ossfs_passwd_file && chmod 640 $ossfs_passwd_file
+touch $ossfs_script_file && chmod a+x $ossfs_script_file
+for bucket in ${arr_bucket[@]} ;do
+    if ! grep -q "$bucket" $ossfs_passwd_file; then
+    	echo $bucket:$AccessKeyID:$AccessKeySecret >> $ossfs_passwd_file
+    fi
+    [ -d ${ossfs_mount_point}/${bucket} ] || mkdir ${ossfs_mount_point}/${bucket}
+    if ! grep -q "$bucket" $ossfs_script_file; then
+        echo "ossfs $bucket ${ossfs_mount_point}/${bucket} -ourl=http://oss-cn-beijing-internal.aliyuncs.com" >> $ossfs_script_file
     fi
 done
-chmod 640 /etc/passwd-ossfs
-
-arr_bucket=(djangotest jiangkehot univerdream-aliyun-bill univerdream-bj-registry univerdream-etc)
-ossfs_point=/data/ossfs
-
-# make bucket_point && 开机自动挂载
-ossfs_file=/etc/init.d/ossfs
-touch $ossfs_file && chmod a+x $ossfs_file
-for bucket in ${arr_bucket[@]} ;do
-  [ -d ${ossfs_point}/${bucket} ] || mkdir ${ossfs_point}/${bucket}
-  if ! grep -q "$bucket" $ossfs_file; then
-      echo "ossfs $bucket ${ossfs_point}/${bucket} -ourl=http://oss-cn-beijing-internal.aliyuncs.com" >> $ossfs_file
-  fi
-done
-. $ossfs_file
+. $ossfs_script_file
 chkconfig ossfs on
 
 ## umount
