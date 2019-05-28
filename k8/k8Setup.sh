@@ -13,7 +13,7 @@ sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 if [ "$1" == "aliyun"  ]; then
   # Aliyun 
   if ! grep 'baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/' /etc/yum.repos.d/kubernetes.repo; then
-  cat <<EOF >> /etc/yum.repos.d/kubernetes.repo
+  cat <<-EOF>> /etc/yum.repos.d/kubernetes.repo
   [kubernetes_aliyun]
   name=Kubernetes
   baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
@@ -28,7 +28,7 @@ if [ "$1" == "aliyun"  ]; then
 else
   # google
   if ! grep 'baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64' /etc/yum.repos.d/kubernetes.repo; then
-  cat <<EOF >> /etc/yum.repos.d/kubernetes.repo
+  cat <<-EOF>> /etc/yum.repos.d/kubernetes.repo
   [kubernetes]
   name=Kubernetes
   baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
