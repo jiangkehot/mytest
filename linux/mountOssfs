@@ -9,7 +9,7 @@ if ! /usr/bin/command ossfs; then
 fi
 
 # make bucket_point && 开机自动挂载
-[ -f /root/.ssh/AccessKey ] || source ~/.ssh/AccessKey # mount脚本依赖/root/.ssh/AccessKey
+[ -f /root/.ssh/AccessKey ] && source ~/.ssh/AccessKey # mount脚本依赖/root/.ssh/AccessKey
 arr_bucket=(djangotest jiangkehot univerdream-aliyun-bill univerdream-bj-registry)
 ossfs_mount_point=/data/ossfs
 ossfs_passwd_file=/etc/passwd-ossfs
