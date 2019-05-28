@@ -1,5 +1,6 @@
 #! /bin/bash
 # curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/installDocker.sh | sh -s aliyun 18.09.5-3.el7 -x   // -s 指定版本参数
+# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/docker/installDocker.sh -N | sh -x  //curl 不使用缓存
 # echo '查看docker-ce版本的命令：yum list docker-ce.x86_64 --showduplicates | sort -r' 
 # echo '查看本机docker版本命令：1)docker version  2)rpm -aq | grep docker'
 
