@@ -1,29 +1,13 @@
 #! /bin/bash
 # curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/k8/k8Setup.sh | sh -x
 
+setup_k8s(){
 set -e
 
-# # install docker
-# curl -fsSL https://get.docker.com/ | sh -x
-# sudo systemctl enable docker && sudo systemctl start docker
+# CentOS, RHEL or Fedora
 
-
-# # install kubelet / kubeadm / kubectl
-
-# # Ubuntu, Debian or HypriotOS
-# apt-get update && apt-get install -y apt-transport-https
-
-# curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
-# deb http://apt.kubernetes.io/ kubernetes-xenial main
-# EOF
-
-# apt-get update && apt-get install -y kubelet kubeadm kubectl
-# ###################
-
-
-############################
-# google CentOS(kubernetes.repo.google)
-cat <<EOF > /etc/yum.repos.d/kubernetes.repo.google
+# google
+cat <<EOF >> /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
@@ -33,14 +17,10 @@ repo_gpgcheck=1
 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 exclude=kube*
 EOF
-#############################
 
-
-
-# CentOS, RHEL or Fedora
-# # Aliyun CentOS
-cat <<EOF > /etc/yum.repos.d/kubernetes.repo
-[kubernetes]
+# Aliyun 
+cat <<EOF >> /etc/yum.repos.d/kubernetes.repo
+[kubernetes_aliyun]
 name=Kubernetes
 baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
 enabled=1
@@ -50,17 +30,20 @@ gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors
 EOF
 
 # Set SELinux in permissive mode (effectively disabling it)
-# setenforce 0
-# sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+setenforce 0
+sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
-yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+if [ "$1" == "aliyun"  ]; then
+  yum install -y kubelet kubeadm kubectl --enablerepo=kubernetes_aliyun --disablerepo=kubernetes
+else
+  yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+fi
 
 systemctl enable kubelet && systemctl start kubelet  
 
-
 # Enabling shell autocompletion 脚本补全
 yum install bash-completion -y
-if ! grep 'kubectl completion bash' ~/.bashrc; then
+if ! grep -q 'kubectl completion bash' ~/.bashrc; then
   echo "source <(kubectl completion bash)" >> ~/.bashrc
 fi
 
@@ -77,3 +60,6 @@ echo '非root账户配置 kubectl: mkdir -p $HOME/.kube && sudo cp -i /etc/kuber
 # 创建Pod网络
 # kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 echo '创建Pod网络: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml'
+}
+
+setup_k8s "$@"
