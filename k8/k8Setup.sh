@@ -1,5 +1,5 @@
 #! /bin/bash
-# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/k8/k8Setup.sh | sh -x
+# curl -fsSL https://raw.githubusercontent.com/jiangkehot/mytest/master/k8/k8Setup.sh | sh -s aliyun -x
 
 setup_k8s(){
 set -e
