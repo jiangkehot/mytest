@@ -1,0 +1,4 @@
+# Latest version of python3
+FROM centos:python
+RUN pip install -U pip
+RUN pip install ansible
