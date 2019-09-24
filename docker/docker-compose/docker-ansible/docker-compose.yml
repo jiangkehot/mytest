@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web:
+    # build: .
+    # build: ./dir
+    build:
+      context: ./dockerfile
+      dockerfile: Dockerfile-ansible
+      # args:
+      #   buildno: 1
+    # ports:
+    #  - "5000:5000"
+    volumes:
+     # - ../src: /src
+     - $PWD/.ansible: /root/.ansible
+     - $PWD/.ssh/id_rsa: /root/.ssh/id_rsa
+  # redis:
+  #   image: "redis:3.0.7"
