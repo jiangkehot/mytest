@@ -2,5 +2,5 @@
 FROM python:latest
 RUN pip install -U pip
 # RUN pip install ansible
-ADD . /root/docker-ansible
-RUN pip install -r /root/docker-ansible/requirements.txt
+ADD . /root/docker_ansible
+RUN pip install -r /root/docker_ansible/requirements.txt
