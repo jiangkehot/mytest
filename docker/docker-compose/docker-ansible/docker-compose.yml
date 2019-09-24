@@ -1,6 +1,7 @@
 version: '3'
 services:
   web:
+    # image: registry.cn-beijing.aliyuncs.com/univerdream/ansible:1.0
     # build: .
     # build: ./dir
     build:
