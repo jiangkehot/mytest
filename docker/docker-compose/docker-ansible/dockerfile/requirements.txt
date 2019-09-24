@@ -1,0 +1,4 @@
+# django==1.7.5
+# MySQL-python
+ansible
+boto3 # awscli for python
