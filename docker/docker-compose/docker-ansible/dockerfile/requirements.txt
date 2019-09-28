@@ -3,3 +3,4 @@
 ansible
 boto3 # awscli for python
 docker
+docker-compose
