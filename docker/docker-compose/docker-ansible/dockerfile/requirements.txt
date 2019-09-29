@@ -3,6 +3,5 @@
 ansible
 boto3 # awscli for python
 #docker
-docker==3.0.0
+docker-compose==1.23.2
 #docker-compose
-docker-compose==1.7.0
