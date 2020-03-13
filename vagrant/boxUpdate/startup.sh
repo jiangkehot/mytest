@@ -22,7 +22,7 @@ echo 'Box样例，如 centos/7 、ubuntu/xenial64 、ubuntu/trusty64 等'
 echo '具体请打开VagrantCloud官网查看 https://app.vagrantup.com/boxes/search'
 
 # boxName的获取方式对应着两种shell的执行方式，
-# 1）通过子shell执行时，利用位置参数$1获取
+# 1）通过cat或curl流，然后通过管道送给shell执行，此时read函数会被跳过无法交互，只能通过cat xxx | sh -s ‘centos/7’命令添加参数，即利用位置参数$1获取
 # 2）本地shell执行(source 或 .)，利用read函数与用户交互获取
 read -p "请输入要初始化的box：" boxname
 
@@ -30,7 +30,7 @@ read -p "请输入要初始化的box：" boxname
 boxname=${1:-"$boxname"}
 
 if [ -z $boxname ]; then
-	exiterr "Box名字不能为空，如 centos/7 、ubuntu/xenial64 、ubuntu/trusty64 等，\n如果通过source执行本脚本，请通过提示输入，\n如果通过sh执行，请在sh -e 后添加Box的名字,如sh -s 'ubuntu/trusty64'"
+	exiterr "Box名字不能为空，如 centos/7 、ubuntu/xenial64 、ubuntu/trusty64 等，\n如果通过source执行本脚本，请通过提示输入，\n如果通过sh执行，请在sh -s 后添加Box的名字,如sh -s 'ubuntu/trusty64'"
 fi
 
 #vagrant初始化目录
