@@ -38,8 +38,9 @@ Get_Dist_Pm()
     echo $PM;
 }
 
+localPM=Get_Dist_Pm
 
-if [ `Get_Dist_Pm` = "yum" ]; then
+if [ $localPM = "yum" ]; then
     #备份系统yum源
     mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 
@@ -51,18 +52,18 @@ if [ `Get_Dist_Pm` = "yum" ]; then
     #生成缓存
     yum makecache   
     
-    sudo `Get_Dist_Pm` update -y && sudo `Get_Dist_Pm` upgrade -y
+    sudo $localPM update -y && sudo $localPM upgrade -y
 fi
 
 
-if [ `Get_Dist_Pm` = "apt" ]; then
+if [ $localPM = "apt" ]; then
     #statements
     #备份源 
     cp  /etc/apt/sources.list  /etc/apt/sources.list_bak
 
     #替换阿里云的源
     sudo sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
-    sudo `Get_Dist_Pm` update && sudo `Get_Dist_Pm` upgrade -y
+    sudo $localPM update && sudo $localPM upgrade -y
 fi
 
 
