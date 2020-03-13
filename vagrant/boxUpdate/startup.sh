@@ -51,7 +51,7 @@ if [ `uname` = "Darwin" ]; then
 fi
 
 #下载sh脚本
-[ -f boxUpdate.sh ] || wget https://raw.githubusercontent.com/jiangkehot/mytest/master/vagrant/boxUpdate/boxUpdate.sh
+wget https://raw.githubusercontent.com/jiangkehot/mytest/master/vagrant/boxUpdate/boxUpdate.sh
 
 #启动虚拟机（根据shell脚本更新centos，并下载docker和更新docker镜像）
 vagrant up
