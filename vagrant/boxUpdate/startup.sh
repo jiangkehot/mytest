@@ -26,7 +26,8 @@ echo '具体请打开VagrantCloud官网查看 https://app.vagrantup.com/boxes/se
 # 2）本地shell执行(source 或 .)，利用read函数与用户交互获取
 read -p "请输入要初始化的box：" boxname
 
-boxname=${1:-'boxname'}
+# 注意的boxname得加变量符号，因为这里是要引用变量$boxname里的值，而非字符串boxname，同时注意引号，因为要取值所以必须是双引号。
+boxname=${1:-"$boxname"}
 
 if [ -z $boxname ]; then
 	exiterr "Box名字不能为空，如 centos/7 、ubuntu/xenial64 、ubuntu/trusty64 等，\n如果通过source执行本脚本，请通过提示输入，\n如果通过sh执行，请在sh -e 后添加Box的名字,如sh -s 'ubuntu/trusty64'"
