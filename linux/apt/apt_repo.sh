@@ -17,6 +17,7 @@ cp  /etc/apt/sources.list  /etc/apt/sources.list_bak
 
 #替换阿里云的源
 sudo sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
+sudo sed -i 's#http://deb.debian.org#https://mirrors.aliyun.com#g' /etc/apt/sources.list
 
 #更新源（并升级软件包）
 # sudo apt update && apt-get update
