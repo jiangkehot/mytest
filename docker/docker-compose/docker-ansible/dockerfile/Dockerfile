@@ -5,3 +5,4 @@ RUN pip install -U pip
 ADD . /root/.docker_ansible
 # WORKDIR /root
 RUN pip install -r /root/.docker_ansible/requirements.txt
+CMD ["bash"]
