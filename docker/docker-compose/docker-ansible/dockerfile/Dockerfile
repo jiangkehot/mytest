@@ -1,5 +1,5 @@
 # Latest version of python3
-FROM python:3.7
+FROM python
 RUN pip install -U pip
 # RUN pip install ansible
 ADD . /root/.docker_ansible
